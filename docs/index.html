@@ -4,130 +4,1151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SenseMath: Evaluating Number Sense in Large Language Models</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; line-height: 1.7; }
+:root {
+  --hero-bg: #0a0a1a;
+  --hero-secondary: #0e1225;
+  --content-bg: #fafaf8;
+  --card-bg: #ffffff;
+  --accent: #1a3a5c;
+  --accent-light: #2a5a8c;
+  --warm: #c8553d;
+  --warm-light: #e87a5f;
+  --text-primary: #1a1a2a;
+  --text-secondary: #4a4a5a;
+  --text-muted: #7a7a8a;
+  --border: #e2e2e0;
+  --border-light: #f0f0ee;
+  --success: #2a8c5a;
+  --error: #c8553d;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+}
 
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: white; text-align: center; padding: 60px 20px 40px;
-  }
-  .hero h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 700; }
-  .hero .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 25px; }
-  .hero .authors { font-size: 1em; opacity: 0.8; margin-bottom: 8px; }
-  .hero .affil { font-size: 0.9em; opacity: 0.6; margin-bottom: 25px; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
-  .badges a {
-    display: inline-block; padding: 8px 18px; border-radius: 6px;
-    text-decoration: none; font-weight: 600; font-size: 0.95em; transition: transform 0.2s;
-  }
-  .badges a:hover { transform: translateY(-2px); }
-  .btn-paper { background: #e74c3c; color: white; }
-  .btn-code { background: #2ecc71; color: white; }
-  .btn-data { background: #3498db; color: white; }
+html { scroll-behavior: smooth; }
 
-  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  line-height: 1.7;
+  background: var(--content-bg);
+  -webkit-font-smoothing: antialiased;
+}
 
-  h2 { font-size: 1.8em; margin: 40px 0 15px; color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; }
-  h3 { font-size: 1.3em; margin: 25px 0 10px; color: #333; }
+/* ─── Fade-in on scroll ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  p { margin-bottom: 15px; }
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  background: var(--hero-bg);
+  color: #fff;
+  text-align: center;
+  padding: 100px 24px 80px;
+  overflow: hidden;
+}
 
-  .fig-container { text-align: center; margin: 30px 0; }
-  .fig-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-  .fig-caption { font-size: 0.9em; color: #666; margin-top: 10px; font-style: italic; }
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(26,58,92,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(200,85,61,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
-  th { background: #f8f9fa; padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6; }
-  td { padding: 8px 10px; border-bottom: 1px solid #eee; }
-  tr:hover { background: #f8f9fa; }
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+}
 
-  .highlight-box {
-    background: #f0f7ff; border-left: 4px solid #3498db;
-    padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0;
-  }
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
 
-  .abstract { font-size: 1.05em; color: #444; }
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--warm-light);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeDown 0.6s 0.2s forwards;
+}
 
-  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-  pre { background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeDown 0.7s 0.35s forwards;
+}
 
-  .bibtex { background: #f8f9fa; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.85em; white-space: pre-wrap; }
+.hero h1 .math-accent {
+  color: var(--warm-light);
+  font-style: italic;
+}
 
-  footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; border-top: 1px solid #eee; margin-top: 40px; }
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeDown 0.7s 0.5s forwards;
+}
+
+.hero-authors {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeDown 0.6s 0.6s forwards;
+}
+
+.hero-affil {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeDown 0.6s 0.65s forwards;
+}
+
+.hero-links {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeDown 0.6s 0.75s forwards;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+  border: 1.5px solid transparent;
+}
+
+.hero-link--paper {
+  background: var(--warm);
+  color: #fff;
+  border-color: var(--warm);
+}
+.hero-link--paper:hover {
+  background: transparent;
+  color: var(--warm-light);
+  border-color: var(--warm-light);
+}
+
+.hero-link--code {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.25);
+}
+.hero-link--code:hover {
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+
+.hero-link--data {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.25);
+}
+.hero-link--data:hover {
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+
+/* Floating grid decoration */
+.hero-grid {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── CONTENT LAYOUT ─── */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border-light);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--warm);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+/* ─── OVERVIEW FIGURE ─── */
+.overview-figure {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.overview-figure img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.fig-caption {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+/* ─── TABS ─── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--border);
+}
+
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.tab-btn:hover { color: var(--text-primary); }
+
+.tab-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─── RESULTS TABLE ─── */
+.results-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.results-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  background: #fafaf8;
+  font-weight: 600;
+}
+
+.results-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.results-table tbody tr:last-child td { border-bottom: none; }
+
+.results-table tbody tr:hover { background: rgba(26,58,92,0.03); }
+
+.model-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bar-chart-wrap {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.bar-chart-wrap img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* ─── QUIZ ─── */
+.quiz-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px;
+  max-width: 720px;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+.quiz-progress {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.quiz-category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--warm);
+  background: rgba(200,85,61,0.08);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  white-space: pre-line;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.quiz-btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.quiz-btn--yes {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+.quiz-btn--yes:hover { background: #238f50; }
+
+.quiz-btn--no {
+  background: var(--error);
+  color: #fff;
+  border-color: var(--error);
+}
+.quiz-btn--no:hover { background: #b04430; }
+
+.quiz-btn--skip {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.quiz-btn--skip:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.quiz-btn--next {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.quiz-btn--next:hover { background: var(--accent-light); }
+
+.quiz-result {
+  display: none;
+  margin-top: 24px;
+}
+
+.quiz-result.show { display: block; }
+
+.result-banner {
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.result-banner--correct {
+  background: rgba(42,140,90,0.1);
+  color: var(--success);
+  border: 1px solid rgba(42,140,90,0.2);
+}
+
+.result-banner--incorrect {
+  background: rgba(200,85,61,0.1);
+  color: var(--error);
+  border: 1px solid rgba(200,85,61,0.2);
+}
+
+.result-banner--neutral {
+  background: rgba(26,58,92,0.06);
+  color: var(--accent);
+  border: 1px solid rgba(26,58,92,0.12);
+}
+
+.model-answers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.model-answers-table th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+}
+
+.model-answers-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+.model-answers-table tr:last-child td { border-bottom: none; }
+
+.icon-correct { color: var(--success); font-weight: bold; }
+.icon-incorrect { color: var(--error); font-weight: bold; }
+
+.reason-toggle {
+  font-size: 0.78rem;
+  color: var(--accent-light);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.reason-text {
+  display: none;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+  padding-left: 0;
+}
+
+.reason-text.show { display: block; }
+
+/* ─── G2 GENERATION CARDS ─── */
+.g2-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.g2-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: box-shadow 0.25s, border-color 0.25s;
+  position: relative;
+}
+
+.g2-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+.g2-card.highlight {
+  border-color: var(--success);
+  box-shadow: 0 0 0 1px var(--success), 0 6px 24px rgba(42,140,90,0.08);
+}
+
+.g2-card.highlight::before {
+  content: 'BEST';
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  background: var(--success);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.g2-model-name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+}
+
+.g2-row {
+  margin-bottom: 10px;
+}
+
+.g2-label {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.g2-expr {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.g2-answer {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.g2-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+.g2-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.g2-badge--pass {
+  background: rgba(42,140,90,0.1);
+  color: var(--success);
+}
+
+.g2-badge--fail {
+  background: rgba(200,85,61,0.08);
+  color: var(--error);
+}
+
+/* ─── CITATION ─── */
+.citation-block {
+  position: relative;
+  background: var(--hero-bg);
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  padding: 28px 28px 28px 28px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.copy-btn:hover {
+  background: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.9);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border-light);
+  margin-top: 0;
+}
+
+footer a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* ─── LOADING STATE ─── */
+.loading-placeholder {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .hero { padding: 64px 20px 52px; }
+  .section { padding: 48px 0; }
+  .quiz-card { padding: 24px 18px; }
+  .quiz-actions { flex-direction: column; }
+  .quiz-btn { width: 100%; text-align: center; }
+  .g2-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 10px 14px; font-size: 0.75rem; }
+  .hero-links { flex-direction: column; align-items: center; }
+  .hero-link { width: 220px; justify-content: center; }
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <h1>SenseMath</h1>
-  <div class="subtitle">Evaluating Number Sense in Large Language Models</div>
-  <div class="authors">Haomin Zhuang, Xiangqi Wang, Yili Shen, Ying Cheng, Xiangliang Zhang</div>
-  <div class="affil">University of Notre Dame</div>
-  <div class="badges">
-    <a href="https://arxiv.org/abs/XXXX.XXXXX" class="btn-paper">📄 Paper</a>
-    <a href="https://github.com/zhmzm/SenseMath" class="btn-code">💻 Code</a>
-    <a href="https://huggingface.co/datasets/DaydreamerMZM/SenseMath" class="btn-data">🤗 Dataset</a>
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">COLM 2025</div>
+    <h1>Sense<span class="math-accent">Math</span></h1>
+    <div class="hero-subtitle">Evaluating Number Sense in Large Language Models</div>
+    <div class="hero-authors">Haomin Zhuang &middot; Xiangqi Wang &middot; Yili Shen &middot; Ying Cheng &middot; Xiangliang Zhang</div>
+    <div class="hero-affil">University of Notre Dame</div>
+    <div class="hero-links">
+      <a href="https://arxiv.org/abs/XXXX.XXXXX" class="hero-link hero-link--paper">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Paper
+      </a>
+      <a href="https://github.com/zhmzm/SenseMath" class="hero-link hero-link--code">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Code
+      </a>
+      <a href="https://huggingface.co/datasets/DaydreamerMZM/SenseMath" class="hero-link hero-link--data">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        Dataset
+      </a>
+    </div>
   </div>
-</div>
+</header>
 
-<div class="container">
+<!-- ════════════════════════ OVERVIEW ════════════════════════ -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Overview</div>
+      <div class="section-title">How do LLMs handle number sense?</div>
+      <p class="section-desc">
+        SenseMath is a controlled benchmark measuring whether LLMs can exploit
+        numerical shortcuts rather than defaulting to step-by-step computation.
+        1,600 matched item families span 8 categories and 4 digit scales.
+      </p>
+    </div>
+    <div class="overview-figure reveal">
+      <img src="https://raw.githubusercontent.com/zhmzm/SenseMath/main/assets/fig1_overview.png"
+           alt="SenseMath benchmark overview: item family construction and evaluation pipeline"
+           loading="lazy">
+      <div class="fig-caption">Figure 1. Benchmark construction and three-level evaluation framework (Use, Judge, Generate).</div>
+    </div>
+  </div>
+</section>
 
-<h2>Abstract</h2>
-<p class="abstract">
-Large language models default to step-by-step computation even when efficient numerical shortcuts exist. We introduce <strong>SenseMath</strong>, a controlled benchmark that measures whether LLMs can exploit number-sense shortcuts when prompted. The benchmark comprises 1,600 matched item families spanning 8 categories and 4 digit scales, each with strong-shortcut, weak-shortcut, and control variants. We evaluate 5 models under chain-of-thought (CoT), number-sense (NS), and strict prompting conditions. We find that NS prompting induces a broad shortcut-seeking mode: accuracy on shortcut-amenable items is maintained or improved while control accuracy drops. Per-category analysis reveals that models show selective strengths and reversals across shortcut types, establishing number sense as a multi-dimensional construct. A three-level evaluation framework (Use, Judge, Generate) confirms that shortcut exploitation, recognition, and construction dissociate across models.
-</p>
+<!-- ════════════════════════ MAIN RESULTS ════════════════════════ -->
+<section class="section" id="results">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Main Results</div>
+      <div class="section-title">Accuracy across digit scales</div>
+      <p class="section-desc">
+        NS prompting uniformly increases shortcut strategy usage but these strategies
+        succeed only where valid shortcuts exist, producing an accuracy asymmetry.
+      </p>
+    </div>
 
-<h2>Main Results</h2>
+    <div class="reveal">
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn" role="tab" data-scale="2">d = 2</button>
+        <button class="tab-btn active" role="tab" data-scale="4">d = 4</button>
+        <button class="tab-btn" role="tab" data-scale="8">d = 8</button>
+        <button class="tab-btn" role="tab" data-scale="16">d = 16</button>
+      </div>
 
-<div class="fig-container">
-  <img src="https://raw.githubusercontent.com/zhmzm/SenseMath/main/assets/fig_rq1_combined.png" alt="Main Results">
-  <div class="fig-caption">NS prompting effect across digit scales and models. NS maintains strong-item accuracy while reducing control accuracy.</div>
-</div>
+      <div id="results-content">
+        <div class="loading-placeholder">Loading results...</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="highlight-box">
-  <strong>Key mechanism:</strong> NS prompting uniformly increases shortcut strategy usage (from 20–39% under CoT to 68–86% under NS), but these strategies succeed on strong items (where valid shortcuts exist) and fail on control items (where no shortcut applies), producing the observed accuracy asymmetry.
-</div>
+<!-- ════════════════════════ J1 QUIZ ════════════════════════ -->
+<section class="section" id="quiz">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Interactive Quiz &mdash; J1 Judgment</div>
+      <div class="section-title">Can <em>you</em> tell if a shortcut applies?</div>
+      <p class="section-desc">
+        In the J1 task, models must judge whether a math problem can be solved
+        via a number-sense shortcut. Try it yourself, then see how five LLMs performed.
+      </p>
+    </div>
 
-<h2>Benchmark Design</h2>
+    <div class="reveal">
+      <div id="quiz-container" class="quiz-card">
+        <div class="loading-placeholder">Loading quiz...</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<table>
-  <tr><th>Property</th><th>Value</th></tr>
-  <tr><td>Categories</td><td>8 (3 tiers: problem-level, reasoning-level, option-level)</td></tr>
-  <tr><td>Digit scales</td><td>d ∈ {2, 4, 8, 16}</td></tr>
-  <tr><td>Families</td><td>1,600 (50 per category × 8 × 4 scales)</td></tr>
-  <tr><td>Variants</td><td>3 per family (strong, weak, control)</td></tr>
-  <tr><td>Total items</td><td>4,800</td></tr>
-  <tr><td>Conditions</td><td>CoT, NS, Strict</td></tr>
-</table>
+<!-- ════════════════════════ G2 GENERATION ════════════════════════ -->
+<section class="section" id="generation">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">G2 Generation</div>
+      <div class="section-title">Can models <em>create</em> shortcut problems?</div>
+      <p class="section-desc">
+        In the G2 task, models generate a matched pair of expressions: one with a
+        valid shortcut (strong) and one without (control). We check 6 criteria.
+        Shown below: magnitude estimation examples from each model.
+      </p>
+    </div>
 
+    <div id="g2-container" class="reveal">
+      <div class="loading-placeholder">Loading generation results...</div>
+    </div>
+  </div>
+</section>
 
-<h2>Results Summary (d=4)</h2>
-
-<table>
-  <tr><th>Model</th><th>CoT Acc (S/C)</th><th>NS Acc (S/C)</th><th>NS Rate</th><th>95% CI</th></tr>
-  <tr><td>GPT-4o-mini</td><td>78/65</td><td>84/63</td><td>27%→77%</td><td>[+.015, +.147] ✓</td></tr>
-  <tr><td>GPT-4.1-mini</td><td>88/76</td><td>96/83</td><td>20%→68%</td><td>[−.035, +.075]</td></tr>
-  <tr><td>Qwen3-30B</td><td>68/56</td><td>73/56</td><td>39%→86%</td><td>[−.020, +.095]</td></tr>
-  <tr><td>Qwen3-8B</td><td>74/65</td><td>72/53</td><td>37%→86%</td><td>[+.032, +.158] ✓</td></tr>
-  <tr><td>Llama-3.1-8B</td><td>66/58</td><td>59/55</td><td>31%→78%</td><td>[−.125, +.035]</td></tr>
-</table>
-
-<h2>Citation</h2>
-
-<div class="bibtex">@article{zhuang2025sensemath,
-  title={SenseMath: Evaluating Number Sense in Large Language Models},
-  author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2025}
+<!-- ════════════════════════ CITATION ════════════════════════ -->
+<section class="section" id="citation">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Citation</div>
+      <div class="section-title">Cite this work</div>
+    </div>
+    <div class="reveal" style="margin-top: 24px; position: relative;">
+      <div class="citation-block" id="bibtex">@article{zhuang2025sensemath,
+  title     = {SenseMath: Evaluating Number Sense in Large Language Models},
+  author    = {Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
+  journal   = {arXiv preprint arXiv:XXXX.XXXXX},
+  year      = {2025}
 }</div>
+      <button class="copy-btn" onclick="copyBibtex()">COPY</button>
+    </div>
+  </div>
+</section>
 
-</div>
-
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
 <footer>
-  SenseMath &copy; 2025 Haomin Zhuang et al., University of Notre Dame. MIT License.
+  <div class="footer-links">
+    <a href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a>
+    <a href="https://github.com/zhmzm/SenseMath">GitHub</a>
+    <a href="https://huggingface.co/datasets/DaydreamerMZM/SenseMath">HuggingFace</a>
+  </div>
+  <div>SenseMath &copy; 2025 Haomin Zhuang et al., University of Notre Dame</div>
 </footer>
 
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════ */
+let DATA = null;
+const MODEL_ORDER = ['GPT-4o-mini', 'GPT-4.1-mini', 'Qwen3-30B', 'Qwen3-8B', 'Llama-3.1-8B'];
+const CHECK_LABELS = {
+  strong_answer_correct: 'S-Ans',
+  control_answer_correct: 'C-Ans',
+  strong_shortcut_exists: 'S-Short',
+  control_blocks_shortcut: 'C-Block',
+  family_matching: 'Family',
+  novelty_digit_scale: 'Novel'
+};
+
+async function loadData() {
+  try {
+    const resp = await fetch('data.json');
+    DATA = await resp.json();
+  } catch (e) {
+    console.warn('Could not load data.json, using fallback', e);
+    DATA = null;
+  }
+  initResults();
+  initQuiz();
+  initG2();
+}
+
+/* ═══════════════════════════════════════════════════
+   RESULTS TABS
+   ═══════════════════════════════════════════════════ */
+let currentScale = '4';
+
+function initResults() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentScale = btn.dataset.scale;
+      renderResults();
+    });
+  });
+  renderResults();
+}
+
+function renderResults() {
+  const el = document.getElementById('results-content');
+  if (!DATA || !DATA.accuracy || !DATA.accuracy[currentScale]) {
+    el.innerHTML = '<p style="color:var(--text-muted);">Results data not available.</p>';
+    return;
+  }
+
+  const scaleData = DATA.accuracy[currentScale];
+  let rows = '';
+  for (const model of MODEL_ORDER) {
+    const d = scaleData[model];
+    if (!d) continue;
+    rows += `<tr>
+      <td class="model-name">${model}</td>
+      <td>${d.CoT_strong_shortcut}</td>
+      <td>${d.CoT_weak_shortcut}</td>
+      <td>${d.CoT_control}</td>
+      <td>${d.NS_strong_shortcut}</td>
+      <td>${d.NS_weak_shortcut}</td>
+      <td>${d.NS_control}</td>
+      <td>${d['NS%_CoT_strong_shortcut']}% &rarr; ${d['NS%_NS_strong_shortcut']}%</td>
+    </tr>`;
+  }
+
+  el.innerHTML = `
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>CoT (S)</th>
+            <th>CoT (W)</th>
+            <th>CoT (C)</th>
+            <th>NS (S)</th>
+            <th>NS (W)</th>
+            <th>NS (C)</th>
+            <th>NS Rate (CoT&rarr;NS)</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div class="bar-chart-wrap">
+      <img src="https://raw.githubusercontent.com/zhmzm/SenseMath/main/paper/figures/fig_bar_d${currentScale}.png"
+           alt="Bar chart for d=${currentScale}"
+           loading="lazy"
+           onerror="this.style.display='none'">
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════
+   J1 QUIZ
+   ═══════════════════════════════════════════════════ */
+let quizIndex = 0;
+let quizData = [];
+
+function initQuiz() {
+  if (!DATA || !DATA.j1_quiz) {
+    document.getElementById('quiz-container').innerHTML =
+      '<p style="color:var(--text-muted);">Quiz data not available.</p>';
+    return;
+  }
+  quizData = DATA.j1_quiz;
+  quizIndex = 0;
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  if (quizIndex >= quizData.length) {
+    container.innerHTML = `
+      <div style="text-align:center; padding: 40px 0;">
+        <div class="section-title" style="font-size:1.4rem; margin-bottom:12px;">Quiz complete!</div>
+        <p style="color:var(--text-secondary);">You have reviewed all ${quizData.length} questions.</p>
+        <button class="quiz-btn quiz-btn--next" onclick="quizIndex=0;renderQuiz();" style="margin-top:20px;">Restart</button>
+      </div>`;
+    return;
+  }
+
+  const q = quizData[quizIndex];
+  const total = quizData.length;
+
+  let modelRows = '';
+  for (const model of MODEL_ORDER) {
+    const m = q.models[model];
+    if (!m) continue;
+    const correct = m.answer === q.ground_truth;
+    const icon = correct
+      ? '<span class="icon-correct">&#10003;</span>'
+      : '<span class="icon-incorrect">&#10007;</span>';
+    const rid = `reason-${quizIndex}-${model.replace(/[\.\s]/g, '')}`;
+    modelRows += `<tr>
+      <td style="font-weight:600;">${model}</td>
+      <td>${m.answer} ${icon}</td>
+      <td>
+        <button class="reason-toggle" onclick="document.getElementById('${rid}').classList.toggle('show')">show reasoning</button>
+        <div id="${rid}" class="reason-text">${escapeHtml(m.reason)}</div>
+      </td>
+    </tr>`;
+  }
+
+  container.innerHTML = `
+    <div class="quiz-progress">QUESTION ${quizIndex + 1} / ${total}</div>
+    <div class="quiz-category">${q.category.replace(/_/g, ' ')} &middot; ${q.variant.replace(/_/g, ' ')}</div>
+    <div class="quiz-question">${escapeHtml(q.question)}</div>
+    <div class="quiz-actions" id="quiz-actions">
+      <button class="quiz-btn quiz-btn--yes" onclick="answerQuiz('YES')">YES &mdash; shortcut works</button>
+      <button class="quiz-btn quiz-btn--no" onclick="answerQuiz('NO')">NO &mdash; must compute</button>
+      <button class="quiz-btn quiz-btn--skip" onclick="revealQuiz(null)">Show Answer</button>
+    </div>
+    <div class="quiz-result" id="quiz-result">
+      <div id="quiz-banner"></div>
+      <table class="model-answers-table">
+        <thead><tr><th>Model</th><th>Answer</th><th>Reasoning</th></tr></thead>
+        <tbody>${modelRows}</tbody>
+      </table>
+      <div style="text-align:right; margin-top: 12px;">
+        <button class="quiz-btn quiz-btn--next" onclick="quizIndex++;renderQuiz();">
+          ${quizIndex < total - 1 ? 'Next Question' : 'Finish'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function answerQuiz(userAnswer) {
+  const q = quizData[quizIndex];
+  const correct = userAnswer === q.ground_truth;
+  revealQuiz(correct);
+}
+
+function revealQuiz(correct) {
+  const q = quizData[quizIndex];
+  const result = document.getElementById('quiz-result');
+  const banner = document.getElementById('quiz-banner');
+  const actions = document.getElementById('quiz-actions');
+
+  actions.style.display = 'none';
+  result.classList.add('show');
+
+  if (correct === true) {
+    banner.className = 'result-banner result-banner--correct';
+    banner.textContent = `Correct! The ground truth is ${q.ground_truth}.`;
+  } else if (correct === false) {
+    banner.className = 'result-banner result-banner--incorrect';
+    banner.textContent = `Incorrect. The ground truth is ${q.ground_truth}.`;
+  } else {
+    banner.className = 'result-banner result-banner--neutral';
+    banner.textContent = `The ground truth is ${q.ground_truth}.`;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   G2 GENERATION
+   ═══════════════════════════════════════════════════ */
+function initG2() {
+  const container = document.getElementById('g2-container');
+  if (!DATA || !DATA.g2_cases) {
+    container.innerHTML = '<p style="color:var(--text-muted);">Generation data not available.</p>';
+    return;
+  }
+
+  let cards = '<div class="g2-grid">';
+  for (const c of DATA.g2_cases) {
+    const allPass = c.all_pass;
+    const highlightClass = allPass ? ' highlight' : '';
+
+    let badges = '';
+    for (const [key, label] of Object.entries(CHECK_LABELS)) {
+      const pass = c.checks[key];
+      badges += `<span class="g2-badge ${pass ? 'g2-badge--pass' : 'g2-badge--fail'}">${pass ? '&#10003;' : '&#10007;'} ${label}</span>`;
+    }
+
+    cards += `
+      <div class="g2-card${highlightClass}">
+        <div class="g2-model-name">${escapeHtml(String(c.model))}</div>
+        <div class="g2-row">
+          <div class="g2-label">Strong Expression</div>
+          <div class="g2-expr">${escapeHtml(String(c.strong_expr))}</div>
+          <div class="g2-answer">= ${escapeHtml(String(c.strong_answer))}</div>
+        </div>
+        <div class="g2-row">
+          <div class="g2-label">Control Expression</div>
+          <div class="g2-expr">${escapeHtml(String(c.control_expr))}</div>
+          <div class="g2-answer">= ${escapeHtml(String(c.control_answer))}</div>
+        </div>
+        <div class="g2-checks">${badges}</div>
+      </div>`;
+  }
+  cards += '</div>';
+
+  // Note: none of the provided cases have all_pass=true. Let's highlight the one closest (Qwen3-30B-A3B with 5/6).
+  container.innerHTML = cards;
+}
+
+/* ═══════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════ */
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function copyBibtex() {
+  const text = document.getElementById('bibtex').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'COPIED';
+    setTimeout(() => { btn.textContent = 'COPY'; }, 1500);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════════ */
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ═══════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadData();
+  initReveal();
+});
+</script>
 </body>
 </html>

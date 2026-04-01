@@ -1,0 +1,504 @@
+{
+  "j1_quiz": [
+    {
+      "question": "What is 9071 × 8363?\n(A) 88380773  (B) 86000773  (C) 80270773  (D) 75860773",
+      "category": "option_elimination",
+      "variant": "control",
+      "ground_truth": "NO",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because recognizing that both numbers are close to 9000 allows for a quicker estimation using the difference from 9000, simplifying the multiplication process."
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because both numbers are close to 9000, you can use the difference from 9000 to quickly apply the identity \\((9000 - a)(9000 - b) = 9000^2 - 9000(a+b) + ab\\) to find the product faster than direc"
+        },
+        "Qwen3-30B": {
+          "answer": "NO",
+          "reason": "NO. The numbers are large and not easily simplified using mental math tricks, so computing step by step (or using estimation) is more reliable than relying on a clever observation."
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause the last digit of the product can be determined by multiplying the last digits of the numbers (1 × 3 = 3), and only one of the options ends in 3, allowing immediate elimination of the o"
+        },
+        "Llama-3.1-8B": {
+          "answer": "NO",
+          "reason": "NO\n\nThis problem can be solved significantly faster using mental math or a clever observation by recognizing that 9071 and 8363 are close to 9000 and 8000, which are easy to multiply, and then adjusti"
+        }
+      }
+    },
+    {
+      "question": "Is 73% of 23770 greater than 9136?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information",
+      "category": "landmark_comparison",
+      "variant": "control",
+      "ground_truth": "NO",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because I can quickly estimate 73% of 23770 as approximately 0.75 of 24000, which is 18000, and since 18000 is clearly greater than 9136, the answer is yes."
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because 73% of 23770 is approximately 0.73 × 24000 = 17520, which is clearly greater than 9136 without exact calculation."
+        },
+        "Qwen3-30B": {
+          "answer": "YES",
+          "reason": "YES. Since 73% of 23770 is roughly 70% of 24000, which is 16,800, and 16,800 is much greater than 9,136, the answer is clearly yes."
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause 73% of 23770 is approximately 73/100 * 23770 ≈ 0.73 * 23770 ≈ 17332.1, which is greater than 9136."
+        },
+        "Llama-3.1-8B": {
+          "answer": "YES",
+          "reason": "YES\n\nThis can be solved quickly by observing that 73% of 23770 is the same as 73% of 2377 * 10, which is 73% of 2377 plus 73% of 0 (which is 0), and 73% of 2377 is 1735.73, which is greater than 9136."
+        }
+      }
+    },
+    {
+      "question": "What is 4697 * 4721?\n(A) 22174547  (B) 22174527  (C) 22174537  (D) 22174557",
+      "category": "structural_shortcuts",
+      "variant": "control",
+      "ground_truth": "NO",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because 4697 and 4721 can be recognized as being close to 4700, allowing us to use the difference of squares formula: \\( (4700 - 3)(4700 + 21) = 4700^2 - 3 \\times 21 \\), which simplifies the calc"
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because 4697 and 4721 are equally spaced around 4710 (difference of 13), you can use the identity \\((a - d)(a + d) = a^2 - d^2\\) with \\(a=4710\\) and \\(d=13\\) to quickly compute \\(4710^2 - 13^2\\)."
+        },
+        "Qwen3-30B": {
+          "answer": "YES",
+          "reason": "YES. Notice that 4697 and 4721 are symmetric around 4709 (since 4709 - 4697 = 12 and 4721 - 4709 = 12), so their product is (4709 - 12)(4709 + 12) = 4709² - 12², which is much easier to compute mental"
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause the numbers 4697 and 4721 are close to 4709 (the midpoint between them), and their product can be calculated using the identity $(a - b)(a + b) = a^2 - b^2$, where $a = 4709$ and $b = 1"
+        },
+        "Llama-3.1-8B": {
+          "answer": "YES",
+          "reason": "YES\n\nThis problem can be solved significantly faster using mental math by recognizing that 4697 and 4721 are close to 4700, and using the fact that 4700 * 4700 = 2209000, then adding the product of th"
+        }
+      }
+    },
+    {
+      "question": "Which of the following is the best estimate for 10200 * 9800?\n(A) 99960000  (B) 99959990  (C) 99960010  (D) 99960020",
+      "category": "magnitude_estimation",
+      "variant": "strong_shortcut",
+      "ground_truth": "YES",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because I can recognize that 10200 is close to 10000 and 9800 is close to 10000, allowing me to use the difference of squares formula: \\( (10000 - 800)(10000 + 200) = 10000^2 - 800 \\times 200 \\),"
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because 10200 * 9800 can be rewritten as (10000 + 200)(10000 - 200) = 10000² - 200² = 100000000 - 40000 = 99960000, allowing quick mental calculation using the difference of squares."
+        },
+        "Qwen3-30B": {
+          "answer": "YES",
+          "reason": "YES. Notice that 10200 × 9800 = (10000 + 200)(10000 − 200) = 10000² − 200² = 100000000 − 40000 = 99960000, so the answer is (A)."
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause 10200 * 9800 can be rewritten as (10000 + 200)(10000 - 200) = 10000² - 200² = 100000000 - 40000 = 99960000, which matches option (A)."
+        },
+        "Llama-3.1-8B": {
+          "answer": "YES",
+          "reason": "YES\n\nThis problem can be solved more quickly by recognizing that 10200 * 9800 is close to 10000 * 10000, which is 100,000,000, and then adjusting for the difference between 10200 and 10000, and 9800 a"
+        }
+      }
+    },
+    {
+      "question": "What is 10001 * 1388?\n(A) 13881388  (B) 13881378  (C) 13881408  (D) 13881398",
+      "category": "structural_shortcuts",
+      "variant": "strong_shortcut",
+      "ground_truth": "YES",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because I can recognize that 10001 is equal to 10000 + 1, allowing me to quickly compute the product as (10000 * 1388) + (1 * 1388) = 13880000 + 1388 = 13881388."
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because 10001 * 1388 = 1388 * (10000 + 1) = 1388 * 10000 + 1388 = 13,880,000 + 1,388 = 13,881,388, which matches option (A)."
+        },
+        "Qwen3-30B": {
+          "answer": "YES",
+          "reason": "YES. Notice that 10001 = 10000 + 1, so 10001 × 1388 = 1388×10000 + 1388×1 = 13,880,000 + 1,388 = 13,881,388, which matches option (A)."
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause 10001 × 1388 can be recognized as 1388 × (10000 + 1) = 13880000 + 1388 = 13881388, which matches option (A)."
+        },
+        "Llama-3.1-8B": {
+          "answer": "YES",
+          "reason": "YES\n\nThis problem can be solved faster by recognizing that 10001 is close to 10000, and using the fact that 10000 * 1388 = 13880000, then adding the product of 1 and 1388 to get 1388000 + 1388 = 13881"
+        }
+      }
+    },
+    {
+      "question": "What is 4077 × 6150?\n(A) 25073551  (B) 25073552  (C) 25073550  (D) 25073549",
+      "category": "option_elimination",
+      "variant": "strong_shortcut",
+      "ground_truth": "YES",
+      "models": {
+        "GPT-4o-mini": {
+          "answer": "YES",
+          "reason": "YES, because I can recognize that 4077 is close to 4000 and 6150 is close to 6000, allowing me to estimate the product quickly by rounding and then adjusting for the differences."
+        },
+        "GPT-4.1-mini": {
+          "answer": "YES",
+          "reason": "YES. Because 6150 × 4000 = 24,600,000 and 6150 × 77 = 473,550, so adding these gives 25,073,550 quickly without full multiplication."
+        },
+        "Qwen3-30B": {
+          "answer": "YES",
+          "reason": "YES. The product of an odd number (4077) and an even number (6150) must be even, so the answer must end in an even digit. Only (C) 25073550 ends in 0, which is even, while the others end in 1, 2, or 9"
+        },
+        "Qwen3-8B": {
+          "answer": "YES",
+          "reason": "YES.  \nBecause the product of an even number (6150) and any integer is even, so the result must be even, eliminating all odd options (A, B, D), leaving only (C) 25073550."
+        },
+        "Llama-3.1-8B": {
+          "answer": "NO",
+          "reason": "NO\n\nThis problem can be solved significantly faster using mental math by breaking it down into simpler multiplication and addition, such as (4000 × 6000) + (700 × 6000) + (70 × 6000) + (7 × 6000) + (7"
+        }
+      }
+    }
+  ],
+  "accuracy": {
+    "2": {
+      "GPT-4o-mini": {
+        "CoT_strong_shortcut": 88,
+        "CoT_weak_shortcut": 88,
+        "CoT_control": 85,
+        "NS_strong_shortcut": 92,
+        "NS_weak_shortcut": 92,
+        "NS_control": 87,
+        "NS%_CoT_strong_shortcut": 28,
+        "NS%_CoT_control": 24,
+        "NS%_NS_strong_shortcut": 46,
+        "NS%_NS_control": 44
+      },
+      "GPT-4.1-mini": {
+        "CoT_strong_shortcut": 99,
+        "CoT_weak_shortcut": 99,
+        "CoT_control": 99,
+        "NS_strong_shortcut": 100,
+        "NS_weak_shortcut": 100,
+        "NS_control": 100,
+        "NS%_CoT_strong_shortcut": 16,
+        "NS%_CoT_control": 7,
+        "NS%_NS_strong_shortcut": 70,
+        "NS%_NS_control": 62
+      },
+      "Qwen3-30B": {
+        "CoT_strong_shortcut": 100,
+        "CoT_weak_shortcut": 100,
+        "CoT_control": 98,
+        "NS_strong_shortcut": 100,
+        "NS_weak_shortcut": 100,
+        "NS_control": 100,
+        "NS%_CoT_strong_shortcut": 26,
+        "NS%_CoT_control": 15,
+        "NS%_NS_strong_shortcut": 86,
+        "NS%_NS_control": 76
+      },
+      "Qwen3-8B": {
+        "CoT_strong_shortcut": 97,
+        "CoT_weak_shortcut": 99,
+        "CoT_control": 98,
+        "NS_strong_shortcut": 98,
+        "NS_weak_shortcut": 98,
+        "NS_control": 95,
+        "NS%_CoT_strong_shortcut": 30,
+        "NS%_CoT_control": 14,
+        "NS%_NS_strong_shortcut": 66,
+        "NS%_NS_control": 55
+      },
+      "Llama-3.1-8B": {
+        "CoT_strong_shortcut": 82,
+        "CoT_weak_shortcut": 76,
+        "CoT_control": 80,
+        "NS_strong_shortcut": 74,
+        "NS_weak_shortcut": 70,
+        "NS_control": 68,
+        "NS%_CoT_strong_shortcut": 26,
+        "NS%_CoT_control": 25,
+        "NS%_NS_strong_shortcut": 62,
+        "NS%_NS_control": 59
+      }
+    },
+    "4": {
+      "GPT-4o-mini": {
+        "CoT_strong_shortcut": 78,
+        "CoT_weak_shortcut": 70,
+        "CoT_control": 65,
+        "NS_strong_shortcut": 84,
+        "NS_weak_shortcut": 72,
+        "NS_control": 63,
+        "NS%_CoT_strong_shortcut": 27,
+        "NS%_CoT_control": 18,
+        "NS%_NS_strong_shortcut": 77,
+        "NS%_NS_control": 78
+      },
+      "GPT-4.1-mini": {
+        "CoT_strong_shortcut": 88,
+        "CoT_weak_shortcut": 89,
+        "CoT_control": 76,
+        "NS_strong_shortcut": 96,
+        "NS_weak_shortcut": 94,
+        "NS_control": 83,
+        "NS%_CoT_strong_shortcut": 20,
+        "NS%_CoT_control": 1,
+        "NS%_NS_strong_shortcut": 68,
+        "NS%_NS_control": 70
+      },
+      "Qwen3-30B": {
+        "CoT_strong_shortcut": 68,
+        "CoT_weak_shortcut": 58,
+        "CoT_control": 56,
+        "NS_strong_shortcut": 73,
+        "NS_weak_shortcut": 68,
+        "NS_control": 56,
+        "NS%_CoT_strong_shortcut": 39,
+        "NS%_CoT_control": 33,
+        "NS%_NS_strong_shortcut": 86,
+        "NS%_NS_control": 92
+      },
+      "Qwen3-8B": {
+        "CoT_strong_shortcut": 74,
+        "CoT_weak_shortcut": 70,
+        "CoT_control": 65,
+        "NS_strong_shortcut": 72,
+        "NS_weak_shortcut": 55,
+        "NS_control": 53,
+        "NS%_CoT_strong_shortcut": 37,
+        "NS%_CoT_control": 25,
+        "NS%_NS_strong_shortcut": 86,
+        "NS%_NS_control": 88
+      },
+      "Llama-3.1-8B": {
+        "CoT_strong_shortcut": 66,
+        "CoT_weak_shortcut": 70,
+        "CoT_control": 58,
+        "NS_strong_shortcut": 59,
+        "NS_weak_shortcut": 56,
+        "NS_control": 55,
+        "NS%_CoT_strong_shortcut": 31,
+        "NS%_CoT_control": 24,
+        "NS%_NS_strong_shortcut": 78,
+        "NS%_NS_control": 69
+      }
+    },
+    "8": {
+      "GPT-4o-mini": {
+        "CoT_strong_shortcut": 75,
+        "CoT_weak_shortcut": 62,
+        "CoT_control": 55,
+        "NS_strong_shortcut": 82,
+        "NS_weak_shortcut": 73,
+        "NS_control": 62,
+        "NS%_CoT_strong_shortcut": 36,
+        "NS%_CoT_control": 22,
+        "NS%_NS_strong_shortcut": 84,
+        "NS%_NS_control": 80
+      },
+      "GPT-4.1-mini": {
+        "CoT_strong_shortcut": 80,
+        "CoT_weak_shortcut": 72,
+        "CoT_control": 65,
+        "NS_strong_shortcut": 95,
+        "NS_weak_shortcut": 86,
+        "NS_control": 83,
+        "NS%_CoT_strong_shortcut": 46,
+        "NS%_CoT_control": 37,
+        "NS%_NS_strong_shortcut": 80,
+        "NS%_NS_control": 78
+      },
+      "Qwen3-30B": {
+        "CoT_strong_shortcut": 57,
+        "CoT_weak_shortcut": 44,
+        "CoT_control": 47,
+        "NS_strong_shortcut": 74,
+        "NS_weak_shortcut": 50,
+        "NS_control": 52,
+        "NS%_CoT_strong_shortcut": 60,
+        "NS%_CoT_control": 47,
+        "NS%_NS_strong_shortcut": 89,
+        "NS%_NS_control": 83
+      },
+      "Qwen3-8B": {
+        "CoT_strong_shortcut": 70,
+        "CoT_weak_shortcut": 62,
+        "CoT_control": 59,
+        "NS_strong_shortcut": 70,
+        "NS_weak_shortcut": 55,
+        "NS_control": 52,
+        "NS%_CoT_strong_shortcut": 55,
+        "NS%_CoT_control": 44,
+        "NS%_NS_strong_shortcut": 87,
+        "NS%_NS_control": 90
+      },
+      "Llama-3.1-8B": {
+        "CoT_strong_shortcut": 62,
+        "CoT_weak_shortcut": 53,
+        "CoT_control": 51,
+        "NS_strong_shortcut": 57,
+        "NS_weak_shortcut": 48,
+        "NS_control": 50,
+        "NS%_CoT_strong_shortcut": 37,
+        "NS%_CoT_control": 24,
+        "NS%_NS_strong_shortcut": 86,
+        "NS%_NS_control": 90
+      }
+    },
+    "16": {
+      "GPT-4o-mini": {
+        "CoT_strong_shortcut": 67,
+        "CoT_weak_shortcut": 53,
+        "CoT_control": 46,
+        "NS_strong_shortcut": 70,
+        "NS_weak_shortcut": 59,
+        "NS_control": 51,
+        "NS%_CoT_strong_shortcut": 37,
+        "NS%_CoT_control": 22,
+        "NS%_NS_strong_shortcut": 90,
+        "NS%_NS_control": 90
+      },
+      "GPT-4.1-mini": {
+        "CoT_strong_shortcut": 74,
+        "CoT_weak_shortcut": 58,
+        "CoT_control": 60,
+        "NS_strong_shortcut": 86,
+        "NS_weak_shortcut": 70,
+        "NS_control": 69,
+        "NS%_CoT_strong_shortcut": 57,
+        "NS%_CoT_control": 48,
+        "NS%_NS_strong_shortcut": 87,
+        "NS%_NS_control": 87
+      },
+      "Qwen3-30B": {
+        "CoT_strong_shortcut": 48,
+        "CoT_weak_shortcut": 30,
+        "CoT_control": 31,
+        "NS_strong_shortcut": 60,
+        "NS_weak_shortcut": 42,
+        "NS_control": 44,
+        "NS%_CoT_strong_shortcut": 59,
+        "NS%_CoT_control": 52,
+        "NS%_NS_strong_shortcut": 94,
+        "NS%_NS_control": 98
+      },
+      "Qwen3-8B": {
+        "CoT_strong_shortcut": 56,
+        "CoT_weak_shortcut": 48,
+        "CoT_control": 50,
+        "NS_strong_shortcut": 56,
+        "NS_weak_shortcut": 38,
+        "NS_control": 34,
+        "NS%_CoT_strong_shortcut": 56,
+        "NS%_CoT_control": 46,
+        "NS%_NS_strong_shortcut": 90,
+        "NS%_NS_control": 98
+      },
+      "Llama-3.1-8B": {
+        "CoT_strong_shortcut": 51,
+        "CoT_weak_shortcut": 36,
+        "CoT_control": 33,
+        "NS_strong_shortcut": 55,
+        "NS_weak_shortcut": 45,
+        "NS_control": 42,
+        "NS%_CoT_strong_shortcut": 40,
+        "NS%_CoT_control": 26,
+        "NS%_NS_strong_shortcut": 92,
+        "NS%_NS_control": 86
+      }
+    }
+  },
+  "g2_cases": [
+    {
+      "model": "Qwen3-30B-A3B-Instruct-2507",
+      "strong_expr": "10200 * 9800",
+      "strong_answer": "99960000",
+      "control_expr": "3470 * 7210",
+      "control_answer": "25028700",
+      "checks": {
+        "strong_answer_correct": true,
+        "control_answer_correct": true,
+        "strong_shortcut_exists": true,
+        "control_blocks_shortcut": true,
+        "family_matching": true,
+        "novelty_digit_scale": false
+      },
+      "all_pass": false
+    },
+    {
+      "model": "Qwen3-8B",
+      "strong_expr": "7500 * 2400",
+      "strong_answer": "18000000",
+      "control_expr": "3210 * 5870",
+      "control_answer": "18852700",
+      "checks": {
+        "strong_answer_correct": true,
+        "control_answer_correct": true,
+        "strong_shortcut_exists": false,
+        "control_blocks_shortcut": true,
+        "family_matching": true,
+        "novelty_digit_scale": true
+      },
+      "all_pass": false
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "strong_expr": "4950 × 20500",
+      "strong_answer": 100000000,
+      "control_expr": "3720 × 6840",
+      "control_answer": 25444800,
+      "checks": {
+        "strong_answer_correct": false,
+        "control_answer_correct": true,
+        "strong_shortcut_exists": false,
+        "control_blocks_shortcut": true,
+        "family_matching": true,
+        "novelty_digit_scale": true
+      },
+      "all_pass": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "strong_expr": "Round both to 10000 and multiply.",
+      "strong_answer": 90250000,
+      "control_expr": "No clean rounding; compute precisely.",
+      "control_answer": 121869720,
+      "checks": {
+        "strong_answer_correct": false,
+        "control_answer_correct": false,
+        "strong_shortcut_exists": false,
+        "control_blocks_shortcut": true,
+        "family_matching": true,
+        "novelty_digit_scale": false
+      },
+      "all_pass": false
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "strong_expr": "7500 * 9000",
+      "strong_answer": "67500000",
+      "control_expr": "4200 * 6300",
+      "control_answer": "26460000",
+      "checks": {
+        "strong_answer_correct": true,
+        "control_answer_correct": true,
+        "strong_shortcut_exists": false,
+        "control_blocks_shortcut": true,
+        "family_matching": true,
+        "novelty_digit_scale": true
+      },
+      "all_pass": false
+    }
+  ]
+}
