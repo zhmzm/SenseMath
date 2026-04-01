@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/fig_rq1_combined.png" width="90%" alt="SenseMath Main Results">
+  <img src="assets/fig_rq1_combined.png" width="85%" alt="SenseMath Main Results">
 </p>
 
 **SenseMath** is a controlled benchmark for measuring whether LLMs can exploit number-sense shortcuts — mental math strategies that significantly reduce computation — when prompted to do so.
@@ -94,9 +94,6 @@ python code/verify_g2.py
 | Qwen3-8B | 74/65 | 72/53 | 37%→86% | [+.032, +.158] ✓ |
 | Llama-3.1-8B | 66/58 | 59/55 | 31%→78% | [−.125, +.035] |
 
-<p align="center">
-  <img src="assets/fig_bar_d4.png" width="95%" alt="Per-category accuracy at d=4">
-</p>
 
 ## Data Format
 
