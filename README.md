@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg" alt="arXiv"></a>
   <a href="https://zhmzm.github.io/SenseMath/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page"></a>
+  <a href="https://huggingface.co/datasets/DaydreamerMZM/SenseMath"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace"></a>
   <a href="#license"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
 </p>
 
