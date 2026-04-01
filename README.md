@@ -7,10 +7,14 @@
 </p>
 
 <p align="center">
-  <img src="assets/fig_rq1_combined.png" width="85%" alt="SenseMath Main Results">
+  <img src="assets/fig1_overview.png" width="90%" alt="SenseMath Benchmark Overview">
 </p>
 
 **SenseMath** is a controlled benchmark for measuring whether LLMs can exploit number-sense shortcuts — mental math strategies that significantly reduce computation — when prompted to do so.
+
+<p align="center">
+  <img src="assets/fig_rq1_combined.png" width="85%" alt="SenseMath Main Results">
+</p>
 
 ## Key Findings
 
