@@ -1,0 +1,43 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Example \textsc{SenseMath} items ($d{=}2$). Each row shows one family; the strong variant admits a clean shortcut while the control requires direct computation. Correct answers are \textbf{bolded}.}
+\label{tab:examples}
+\begin{tabular}{@{}p{1.5cm}p{5.7cm}p{5.7cm}@{}}
+\toprule
+\textbf{Category} & \textbf{Strong-shortcut variant} & \textbf{Control variant} \\
+\midrule
+Structural (SS) &
+\emph{What is $98 \times 34$?} \newline
+(A)~3322 \quad (B)~3342 \quad \textbf{(C)~3332} \quad (D)~3352 \newline
+{\footnotesize Shortcut: $98{=}(100{-}2)$, so $100{\times}34 - 2{\times}34 = 3332$.} &
+\emph{What is $47 \times 40$?} \newline
+(A)~1870 \quad (B)~1890 \quad (C)~1900 \quad \textbf{(D)~1880} \newline
+{\footnotesize No near-100 structure; direct multiplication required.} \\
+\addlinespace
+Cancellation (CI) &
+\emph{Evaluate: $71 + 28 - 27$.} \newline
+(A)~82 \quad (B)~92 \quad \textbf{(C)~72} \quad (D)~62 \newline
+{\footnotesize Shortcut: $28{-}27{=}1$, so $\approx 71{+}1 = 72$.} &
+\emph{Evaluate: $71 + 28 - 118$.} \newline
+(A)~$-19$ \quad (B)~$-1$ \quad \textbf{(C)~$-11$} \quad (D)~$-31$ \newline
+{\footnotesize No near-cancellation; full arithmetic needed.} \\
+\addlinespace
+Equation (ER) &
+\emph{$23 + 22 = \rule{0.5cm}{0.4pt} + 18$.} \newline
+(A)~37 \quad \textbf{(B)~27} \quad (C)~47 \quad (D)~17 \newline
+{\footnotesize Shortcut: move 18 left, $23{+}22{-}18 = 27$.} &
+\emph{$20 + 93 + \rule{0.5cm}{0.4pt} = 59 + 49$.} \newline
+(A)~15 \quad (B)~$-15$ \quad \textbf{(C)~$-5$} \quad (D)~5 \newline
+{\footnotesize No direct identity; must compute both sides.} \\
+\addlinespace
+Option Elim (OE) &
+\emph{What is $70 \times 16$?} \newline
+(A)~1123 \quad (B)~1119 \quad (C)~1121 \quad \textbf{(D)~1120} \newline
+{\footnotesize Shortcut: $70{\times}\text{even} \Rightarrow$ ends in 0; only 1120 qualifies.} &
+\emph{What is $33 \times 87$?} \newline
+(A)~3031 \quad (B)~2973 \quad (C)~3187 \quad \textbf{(D)~2871} \newline
+{\footnotesize All options plausible; no elimination possible.} \\
+\bottomrule
+\end{tabular}
+\end{table*}

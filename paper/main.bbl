@@ -1,0 +1,214 @@
+\begin{thebibliography}{31}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aytes et~al.(2025)Aytes, Baek, and Hwang]{aytes2025sketch}
+Simon~A Aytes, Jinheon Baek, and Sung~Ju Hwang.
+\newblock Sketch-of-thought: Efficient {LLM} reasoning with adaptive
+  cognitive-inspired sketching.
+\newblock \emph{arXiv preprint arXiv:2503.05179}, 2025.
+
+\bibitem[Chen et~al.(2024)Chen, Xu, Liang, et~al.]{chen2024overthinking}
+Xingyu Chen, Jiahao Xu, Tian Liang, et~al.
+\newblock Do {NOT} think that much for $2+3=5$: On the overthinking of o1-like
+  {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2412.21187}, 2024.
+
+\bibitem[Cobbe et~al.(2021{\natexlab{a}})Cobbe, Kosaraju, Bavarian, Chen, Jun,
+  Kaiser, Plappert, Tworek, Hilton, Nakano, et~al.]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021{\natexlab{a}}.
+
+\bibitem[Cobbe et~al.(2021{\natexlab{b}})Cobbe, Kosaraju, Bavarian, Chen, Jun,
+  Kaiser, Plappert, Tworek, Hilton, Nakano, et~al.]{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021{\natexlab{b}}.
+
+\bibitem[Gardner et~al.(2020)Gardner, Artzi, Basmov, Berant, Bogin, Chen,
+  Dasigi, Dua, Elazar, Gottumukkala, et~al.]{gardner2020evaluating}
+Matt Gardner, Yoav Artzi, Victoria Basmov, Jonathan Berant, Ben Bogin, Sihao
+  Chen, Pradeep Dasigi, Dheeru Dua, Yanai Elazar, Ananth Gottumukkala, et~al.
+\newblock Evaluating models' local decision boundaries via contrast sets.
+\newblock \emph{Findings of EMNLP}, 2020.
+
+\bibitem[Grattafiori et~al.(2024)]{grattafiori2024llama}
+Aaron Grattafiori et~al.
+\newblock The {Llama} 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem[Han et~al.(2025)]{han2024tokenbudget}
+Tingxu Han et~al.
+\newblock Token-budget-aware {LLM} reasoning.
+\newblock \emph{Findings of ACL}, 2025.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{a}})Hendrycks, Burns, Kadavath, Arora,
+  Basart, Tang, Song, and Steinhardt]{hendrycks2021math}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  34:\penalty0 7294--7306, 2021{\natexlab{a}}.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{b}})Hendrycks, Burns, Kadavath, Arora,
+  Basart, Tang, Song, and Steinhardt]{hendrycks2021measuring}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  34:\penalty0 7294--7306, 2021{\natexlab{b}}.
+
+\bibitem[Huang et~al.(2025)]{huang2025mathperturb}
+Kaixuan Huang et~al.
+\newblock {MATH-Perturb}: Benchmarking {LLMs}' math reasoning abilities against
+  hard perturbations.
+\newblock \emph{Proceedings of ICML}, 2025.
+
+\bibitem[Kim et~al.(2024)]{kim2024chain}
+Silvan Kim et~al.
+\newblock Chain of draft: Thinking faster by writing less.
+\newblock \emph{arXiv preprint arXiv:2502.18600}, 2024.
+
+\bibitem[Kojima et~al.(2022)Kojima, Gu, Reid, Matsuo, and
+  Iwasawa]{kojima2022large}
+Takeshi Kojima, Shixiang~Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke
+  Iwasawa.
+\newblock Large language models are zero-shot reasoners.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  35:\penalty0 22199--22213, 2022.
+
+\bibitem[Li et~al.(2025)Li, Chen, Xu, et~al.]{li2025numeracy}
+Jiaru Li, Yuxuan Chen, Hao Xu, et~al.
+\newblock Exposing numeracy gaps: A benchmark to evaluate fundamental numerical
+  abilities in large language models.
+\newblock \emph{Findings of ACL}, 2025.
+
+\bibitem[Liu et~al.(2024)]{liu2024mathbench}
+Hongwei Liu et~al.
+\newblock Mathbench: Evaluating the theory and application proficiency of
+  {LLMs} with a hierarchical mathematics benchmark.
+\newblock \emph{arXiv preprint arXiv:2405.12209}, 2024.
+
+\bibitem[Lu et~al.(2024)Lu, Bansal, Xia, et~al.]{lu2024mathvista}
+Pan Lu, Hritik Bansal, Tony Xia, et~al.
+\newblock {MathVista}: Evaluating mathematical reasoning of foundation models
+  in visual contexts.
+\newblock \emph{Proceedings of ICLR}, 2024.
+
+\bibitem[McIntosh et~al.(1992)McIntosh, Reys, and Reys]{mcintosh1992proposed}
+Alistair McIntosh, Barbara~J Reys, and Robert~E Reys.
+\newblock A proposed framework for examining basic number sense.
+\newblock \emph{For the Learning of Mathematics}, 12\penalty0 (3):\penalty0
+  2--8, 1992.
+
+\bibitem[Mirzadeh et~al.(2024)Mirzadeh, Alizadeh, Shahrokhi, Tuzel, Bengio, and
+  Farajtabar]{mirzadeh2024gsmsymbolic}
+Iman Mirzadeh, Keivan Alizadeh, Hooman Shahrokhi, Oncel Tuzel, Samy Bengio, and
+  Mehrdad Farajtabar.
+\newblock {GSM-Symbolic}: Understanding the limitations of mathematical
+  reasoning in large language models.
+\newblock \emph{arXiv preprint arXiv:2410.05229}, 2024.
+
+\bibitem[Nikankin et~al.(2025)Nikankin, Reusch, Mueller, and
+  Belinkov]{nikankin2024arithmetic}
+Yaniv Nikankin, Anja Reusch, Aaron Mueller, and Yonatan Belinkov.
+\newblock Arithmetic without algorithms: Language models solve math with a bag
+  of heuristics.
+\newblock \emph{Proceedings of ICLR}, 2025.
+
+\bibitem[{OpenAI}(2024)]{openai2024gpt4o}
+{OpenAI}.
+\newblock {GPT-4o} system card.
+\newblock \emph{arXiv preprint arXiv:2410.21276}, 2024.
+
+\bibitem[{Qwen Team}(2025)]{qwen2025qwen3}
+{Qwen Team}.
+\newblock Qwen3 technical report.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Rahman \& Mishra(2025)Rahman and Mishra]{rahman2025fragile}
+Md~Ashiqur Rahman and Swaroop Mishra.
+\newblock A fragile number sense: Probing the elemental limits of numerical
+  reasoning in {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2509.06332}, 2025.
+
+\bibitem[Reys(1991)]{reys1991number}
+Barbara~J Reys.
+\newblock Number sense: Simple effective number sense experiences.
+\newblock \emph{School Science and Mathematics}, 91\penalty0 (5):\penalty0
+  236--237, 1991.
+
+\bibitem[Ribeiro et~al.(2020)Ribeiro, Wu, Guestrin, and
+  Singh]{ribeiro2020beyond}
+Marco~Tulio Ribeiro, Tongshuang Wu, Carlos Guestrin, and Sameer Singh.
+\newblock Beyond accuracy: Behavioral testing of {NLP} models with {CheckList}.
+\newblock In \emph{Proceedings of ACL}, pp.\  4902--4912, 2020.
+
+\bibitem[Sowder(1992)]{sowder1992making}
+Judith~T Sowder.
+\newblock Making sense of numbers in school mathematics.
+\newblock \emph{Analysis of Arithmetic for Mathematics Teaching}, pp.\  1--51,
+  1992.
+
+\bibitem[Srivastava et~al.(2023)Srivastava, Rastogi, Rao,
+  et~al.]{srivastava2023beyond}
+Aarohi Srivastava, Abhinav Rastogi, Abhishek Rao, et~al.
+\newblock Beyond the imitation game: Quantifying and extrapolating the
+  capabilities of language models.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+
+\bibitem[Suzgun et~al.(2023)Suzgun, Scales, Sch{\"a}rli, Gehrmann, Tay, Chung,
+  Chowdhery, Le, Chi, Zhou, and Wei]{suzgun2023challenging}
+Mirac Suzgun, Nathan Scales, Nathanael Sch{\"a}rli, Sebastian Gehrmann, Yi~Tay,
+  Hyung~Won Chung, Aakanksha Chowdhery, Quoc Le, Ed~Chi, Denny Zhou, and Jason
+  Wei.
+\newblock Challenging {BIG-Bench} tasks and whether chain-of-thought can solve
+  them.
+\newblock \emph{Findings of ACL}, 2023.
+
+\bibitem[Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock \emph{arXiv preprint arXiv:2203.11171}, 2023.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou]{wei2022chain}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia,
+  Ed~Chi, Quoc Le, and Denny Zhou.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  35:\penalty0 24824--24837, 2022.
+
+\bibitem[Yan et~al.(2025)]{yan2025grasp}
+Zhihao Yan et~al.
+\newblock Do large language models truly grasp addition? a rule-focused
+  diagnostic using two-integer arithmetic.
+\newblock \emph{Proceedings of EMNLP}, 2025.
+
+\bibitem[Yang(2003)]{yang2003assessing}
+Der-Ching Yang.
+\newblock Assessing number sense of six-grade students in {Taiwan}.
+\newblock \emph{Educational Studies in Mathematics}, 54\penalty0 (2):\penalty0
+  209--225, 2003.
+
+\bibitem[Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and
+  Narasimhan]{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas Griffiths, Yuan Cao,
+  and Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2023.
+
+\end{thebibliography}

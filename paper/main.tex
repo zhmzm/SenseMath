@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[submission]{colm2026_conference}
+
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\newcommand{\nicefrac}[2]{#1/#2}
+\usepackage{caption}
+\usepackage{pifont}
+\usepackage{lineno}
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\captionsetup{font=small, labelfont=bf}
+
+\title{SenseMath: A Controlled Benchmark for Shortcut-Sensitive Numerical Reasoning in Large Language Models}
+
+\author{
+  Anonymous Submission
+}
+
+\begin{document}
+
+\ifcolmsubmission
+\linenumbers
+\fi
+
+\maketitle
+
+\begin{abstract}
+\input{sections/0_abstract}
+\end{abstract}
+
+\input{sections/1_introduction}
+\input{sections/2_related_work}
+\input{sections/3_benchmark}
+\input{sections/4_experiments}
+\input{sections/5_conclusion}
+
+\bibliography{references}
+\bibliographystyle{colm2026_conference}
+
+\appendix
+
+\section{Example Items}
+\label{sec:appendix_examples}
+
+Table~\ref{tab:examples} shows example \textsc{SenseMath} items at $d{=}2$ for four categories.
+
+\input{figures/TABLE_examples.tex}
+
+\section{Prompt Templates}
+\label{sec:appendix_prompts}
+
+\textbf{CoT:} ``Please solve the following multiple-choice problem. Show your step-by-step reasoning, then provide your final answer as a single capital letter (A, B, C, or D) inside \textbackslash boxed\{\}.''
+
+\textbf{NS:} ``Please solve the following multiple-choice problem using only easy calculations. Rely on your mathematical intuition, number sense, and estimation. Show brief reasoning, then provide your final answer as a single capital letter (A, B, C, or D) inside \textbackslash boxed\{\}.''
+
+\textbf{Strict:} ``Please solve the following multiple-choice problem by performing precise, step-by-step arithmetic. Do NOT use estimation, rounding, or shortcuts. Show every computation digit by digit, then provide your final answer as a single capital letter (A, B, C, or D) inside \textbackslash boxed\{\}.''
+
+\section{Task Specifications}
+\label{sec:appendix_tasks}
+
+\paragraph{J1 prompt:} ``Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.''
+
+\paragraph{J2 prompt:} ``Classify the solution strategy as SHORTCUT or COMPUTATION. SHORTCUT: uses estimation, approximation, pattern recognition, structural insight, cancellation, or benchmark comparison. COMPUTATION: performs standard step-by-step arithmetic.''
+
+\paragraph{G2:} Models receive a category description and one example strong/control pair, then generate a new pair in JSON format. Six deterministic code checks verify: (1) strong answer correctness, (2) control answer correctness, (3) shortcut existence in strong, (4) shortcut absence in control, (5) family matching, (6) novelty and digit scale.
+
+\paragraph{Heuristic validation.} A deterministic shortcut solver applies category-specific heuristics without exact arithmetic. On strong items it achieves $\geq 70\%$; on control items approximately 25\%, confirming a 40pp separation.
+
+\paragraph{Benchmark integrity.} All distractors share the last 50\% of digits (arithmetic) or fall within $\pm 0.1$ decimal (fractions). Correct option position is balanced across A/B/C/D.
+
+\section{Strict Condition Results}
+\label{sec:appendix_strict}
+
+Table~\ref{tab:strict} presents Strict accuracy at $d{=}4$. High truncation for open-weight models (76--97\%) deflates their estimates.
+
+\input{figures/TABLE_strict.tex}
+
+\end{document}

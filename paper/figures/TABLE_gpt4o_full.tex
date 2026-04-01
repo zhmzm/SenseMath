@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\small
+\caption{GPT-4o-mini results across all digit scales and conditions. NC uses the `easy calculations' prompt. S=strong-shortcut, W=weak-shortcut, C=control. $^{***}p<0.001$.}
+\label{tab:gpt4o_full}
+\begin{tabular}{rlrrrrc}
+\toprule
+$d$ & Cond & Acc$_\text{S}$ & Acc$_\text{W}$ & Acc$_\text{C}$ & $Y(\text{NC--CoT})$ & Tok \\
+\midrule
+2  & CoT    & 94.8 & 94.5 & 90.5 & ---          & 269 \\
+   & NC     & 94.5 & 95.8 & 93.0 & $-0.028$     & 234 \\
+   & Strict & 90.5 & 95.0 & 90.2 & ---          & 621 \\
+\midrule
+4  & CoT    & 88.5 & 83.8 & 82.0 & ---          & 376 \\
+   & NC     & 89.5 & 87.2 & 71.5 & $+0.115^{***}$ & 327 \\
+   & Strict & 90.5 & 88.5 & 87.2 & ---          & 796 \\
+\midrule
+8  & CoT    & 90.2 & 91.0 & 78.5 & ---          & 389 \\
+   & NC     & 92.2 & 89.0 & 69.8 & $+0.108$     & 366 \\
+   & Strict & 80.2 & 74.0 & 65.2 & ---          & 1102 \\
+\midrule
+16 & CoT    & 88.2 & 87.2 & 71.5 & ---          & 528 \\
+   & NC     & 86.2 & 83.5 & 66.8 & $+0.028$     & 448 \\
+   & Strict & 77.5 & 67.2 & 61.8 & ---          & 1189 \\
+\bottomrule
+\end{tabular}
+\end{table}

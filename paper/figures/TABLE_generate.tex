@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{G2 problem generation: per-check pass rates (\%) and 6/6 pass. All models evaluated on 96 prompts (8 categories $\times$ 12). \textcolor{green!60!black}{Green}/\textcolor{red!70!black}{red} = delta from top model per column.}
+\label{tab:generate}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l r rrrrrr r}
+\toprule
+Model & Fmt & S.Ans & C.Ans & SC.Ex & C.Blk & Fam & Nov & Pass \\
+\midrule
+Qwen3-30B    & 96 & 65 & 73 & 66 & 87 & 76 & 96 & 23/96 \\
+Qwen3-8B     & 100 & 69 \textcolor{green!60!black}{\scriptsize+4} & 64 \textcolor{red!70!black}{\scriptsize$-$9} & 55 \textcolor{red!70!black}{\scriptsize$-$11} & 83 \textcolor{red!70!black}{\scriptsize$-$4} & 71 \textcolor{red!70!black}{\scriptsize$-$5} & 99 \textcolor{green!60!black}{\scriptsize+3} & 19/96 \\
+GPT-4.1-mini & 100 & 70 \textcolor{green!60!black}{\scriptsize+5} & 79 \textcolor{green!60!black}{\scriptsize+6} & 67 \textcolor{green!60!black}{\scriptsize+1} & 80 \textcolor{red!70!black}{\scriptsize$-$7} & 75 \textcolor{red!70!black}{\scriptsize$-$1} & 94 \textcolor{red!70!black}{\scriptsize$-$2} & 17/96 \\
+GPT-4o-mini  & 100 & 58 \textcolor{red!70!black}{\scriptsize$-$7} & 48 \textcolor{red!70!black}{\scriptsize$-$25} & 46 \textcolor{red!70!black}{\scriptsize$-$20} & 82 \textcolor{red!70!black}{\scriptsize$-$5} & 73 \textcolor{red!70!black}{\scriptsize$-$3} & 88 \textcolor{red!70!black}{\scriptsize$-$8} & 9/96 \\
+Llama-3.1-8B & 100 & 51 \textcolor{red!70!black}{\scriptsize$-$14} & 46 \textcolor{red!70!black}{\scriptsize$-$27} & 38 \textcolor{red!70!black}{\scriptsize$-$28} & 83 \textcolor{red!70!black}{\scriptsize$-$4} & 52 \textcolor{red!70!black}{\scriptsize$-$24} & 90 \textcolor{red!70!black}{\scriptsize$-$6} & 2/96 \\
+\bottomrule
+\end{tabular}
+\end{table}

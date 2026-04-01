@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\caption{Full results at $d{=}4$: accuracy on strong-shortcut (S) and control (C) items, interaction effect $Y(\text{NC vs CoT})$, and average response tokens. $^{***}p<0.001$.}
+\label{tab:full_results}
+\small
+\begin{tabular}{ll cccc}
+\toprule
+Model & Cond & Acc$_S$ & Acc$_C$ & $Y$ & Tok \\
+\midrule
+GPT-4o-mini & CoT    & 88.5\% & 82.0\% & ---              & 376 \\
+            & NC     & 89.5\% & 71.5\% & $+0.115^{***}$   & 327 \\
+            & Strict & 90.5\% & 87.2\% & ---              & 796 \\
+\midrule
+Qwen3-30B   & CoT    & 75.8\% & 56.0\% & ---              & 394 \\
+            & NC     & 83.0\% & 50.5\% & $+0.128^{***}$   & 382 \\
+            & Strict & 13.8\% & 16.8\% & ---              & 506 \\
+\midrule
+Qwen3-8B    & CoT    & 80.5\% & 71.5\% & ---              & 329 \\
+            & NC     & 73.8\% & 49.2\% & $+0.155^{***}$   & 388 \\
+            & Strict & 27.0\% & 23.5\% & ---              & 486 \\
+\midrule
+Llama-3.1-8B & CoT    & 77.8\% & 69.5\% & ---             & 198 \\
+             & NC     & 52.2\% & 42.2\% & $+0.017$        & 215 \\
+             & Strict & 34.8\% & 33.5\% & ---             & 379 \\
+\bottomrule
+\end{tabular}
+\end{table}

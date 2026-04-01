@@ -1,0 +1,38 @@
+\begin{table*}[t]
+  \centering
+  \small
+  \setlength{\tabcolsep}{2.5pt}
+  \caption{Per-condition results across digit scales for five models. Acc = accuracy; NS\% = shortcut-strategy rate classified by GPT-4.1-mini judge. $S$ = strong-shortcut variant, $W$ = weak-shortcut variant, $C$ = control variant. All numbers are percentages (rounded to integers).}
+  \label{tab:main_results}
+  \begin{tabular}{ll|rrr|rrr|rrr|rrr}
+    \toprule
+    \textbf{Model} & \textbf{Metric} & \multicolumn{3}{c|}{$d=2$ (\%)} & \multicolumn{3}{c|}{$d=4$ (\%)} & \multicolumn{3}{c|}{$d=8$ (\%)} & \multicolumn{3}{c}{$d=16$ (\%)} \\
+     &  & $S$ & $W$ & $C$ & $S$ & $W$ & $C$ & $S$ & $W$ & $C$ & $S$ & $W$ & $C$ \\
+    \midrule
+    GPT-4o-mini & $\text{Acc}_{\text{CoT}}$ & 88 & 88 & 85 & 78 & 70 & 65 & 75 & 62 & 55 & 67 & 53 & 46 \\
+     & $\text{Acc}_{\text{NS}}$ & 92 & 92 & 87 & 84 & 72 & 63 & 82 & 73 & 62 & 70 & 59 & 51 \\
+     & $\text{NS\%}_{\text{CoT}}$ & 28 & 18 & 24 & 27 & 16 & 18 & 36 & 21 & 22 & 37 & 27 & 22 \\
+     & $\text{NS\%}_{\text{NS}}$ & 46 & 37 & 44 & 77 & 65 & 78 & 84 & 76 & 80 & 90 & 80 & 90 \\
+    \midrule
+    GPT-4.1-mini & $\text{Acc}_{\text{CoT}}$ & 99 & 99 & 99 & 88 & 89 & 76 & 80 & 72 & 65 & 74 & 58 & 60 \\
+     & $\text{Acc}_{\text{NS}}$ & 100 & 100 & 100 & 96 & 94 & 83 & 95 & 86 & 83 & 86 & 70 & 69 \\
+     & $\text{NS\%}_{\text{CoT}}$ & 16 & 7 & 7 & 20 & 4 & 1 & 46 & 22 & 37 & 57 & 34 & 48 \\
+     & $\text{NS\%}_{\text{NS}}$ & 70 & 58 & 62 & 68 & 50 & 70 & 80 & 66 & 78 & 87 & 86 & 87 \\
+    \midrule
+    Qwen3-8B & $\text{Acc}_{\text{CoT}}$ & 97 & 99 & 98 & 74 & 70 & 65 & 70 & 62 & 59 & 56 & 48 & 50 \\
+     & $\text{Acc}_{\text{NS}}$ & 98 & 98 & 95 & 72 & 55 & 53 & 70 & 55 & 52 & 56 & 38 & 34 \\
+     & $\text{NS\%}_{\text{CoT}}$ & 30 & 17 & 14 & 37 & 16 & 25 & 55 & 26 & 44 & 56 & 36 & 46 \\
+     & $\text{NS\%}_{\text{NS}}$ & 66 & 56 & 55 & 86 & 72 & 88 & 87 & 79 & 90 & 90 & 88 & 98 \\
+    \midrule
+    Qwen3-30B-A3B & $\text{Acc}_{\text{CoT}}$ & 100 & 100 & 98 & 68 & 58 & 56 & 57 & 44 & 47 & 48 & 30 & 31 \\
+     & $\text{Acc}_{\text{NS}}$ & 100 & 100 & 100 & 73 & 68 & 56 & 74 & 50 & 52 & 60 & 42 & 44 \\
+     & $\text{NS\%}_{\text{CoT}}$ & 26 & 15 & 15 & 39 & 22 & 33 & 60 & 39 & 47 & 59 & 42 & 52 \\
+     & $\text{NS\%}_{\text{NS}}$ & 86 & 77 & 76 & 86 & 84 & 92 & 89 & 84 & 83 & 94 & 96 & 98 \\
+    \midrule
+    Llama-3.1-8B & $\text{Acc}_{\text{CoT}}$ & 82 & 76 & 80 & 66 & 70 & 58 & 62 & 53 & 51 & 51 & 36 & 33 \\
+     & $\text{Acc}_{\text{NS}}$ & 74 & 70 & 68 & 59 & 56 & 55 & 57 & 48 & 50 & 55 & 45 & 42 \\
+     & $\text{NS\%}_{\text{CoT}}$ & 26 & 24 & 25 & 31 & 25 & 24 & 37 & 24 & 24 & 40 & 33 & 26 \\
+     & $\text{NS\%}_{\text{NS}}$ & 62 & 58 & 59 & 78 & 76 & 69 & 86 & 82 & 90 & 92 & 87 & 86 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

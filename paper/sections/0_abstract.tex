@@ -1,0 +1,7 @@
+Large language models default to step-by-step computation even when efficient numerical shortcuts exist, yet no benchmark isolates whether this reflects a strategic deficit or merely a prompting one.
+We introduce \textsc{SenseMath}, a controlled benchmark that measures prompt-sensitive shortcut exploitation on matched item families.
+The benchmark comprises 1{,}600 families spanning 8 categories (6 core number-sense types plus equation reasoning and option elimination) and 4 digit scales ($d \in \{2, 4, 8, 16\}$), each instantiated in strong-shortcut, weak-shortcut, and control variants that share identical surface complexity but differ in shortcut availability.
+We evaluate 5 models (GPT-4o-mini, GPT-4.1-mini, Qwen3-30B, Qwen3-8B, and Llama-3.1-8B) under chain-of-thought (CoT), number-sense (NC), and strict prompting conditions (72{,}000 total inferences).
+We find an asymmetric prompting effect: NS prompting maintains or improves accuracy on shortcut-amenable items while selectively reducing accuracy on matched controls, with the pattern most pronounced at $d{=}4$.
+Per-category radar profiles reveal that models show selective strengths and reversals across shortcut types: Qwen models excel on magnitude estimation and structural shortcuts, while GPT-4o-mini leads on cancellation, equation reasoning, and option elimination.
+A three-level evaluation framework (Use, Judge, Generate) confirms that shortcut exploitation, shortcut recognition, and shortcut construction dissociate across models.

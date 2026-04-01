@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SenseMath: Evaluating Number Sense in Large Language Models</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; line-height: 1.7; }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white; text-align: center; padding: 60px 20px 40px;
+  }
+  .hero h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 700; }
+  .hero .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 25px; }
+  .hero .authors { font-size: 1em; opacity: 0.8; margin-bottom: 8px; }
+  .hero .affil { font-size: 0.9em; opacity: 0.6; margin-bottom: 25px; }
+
+  .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .badges a {
+    display: inline-block; padding: 8px 18px; border-radius: 6px;
+    text-decoration: none; font-weight: 600; font-size: 0.95em; transition: transform 0.2s;
+  }
+  .badges a:hover { transform: translateY(-2px); }
+  .btn-paper { background: #e74c3c; color: white; }
+  .btn-code { background: #2ecc71; color: white; }
+  .btn-data { background: #3498db; color: white; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  h2 { font-size: 1.8em; margin: 40px 0 15px; color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; }
+  h3 { font-size: 1.3em; margin: 25px 0 10px; color: #333; }
+
+  p { margin-bottom: 15px; }
+
+  .fig-container { text-align: center; margin: 30px 0; }
+  .fig-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  .fig-caption { font-size: 0.9em; color: #666; margin-top: 10px; font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+  th { background: #f8f9fa; padding: 10px; text-align: left; border-bottom: 2px solid #dee2e6; }
+  td { padding: 8px 10px; border-bottom: 1px solid #eee; }
+  tr:hover { background: #f8f9fa; }
+
+  .highlight-box {
+    background: #f0f7ff; border-left: 4px solid #3498db;
+    padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0;
+  }
+
+  .abstract { font-size: 1.05em; color: #444; }
+
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; }
+
+  .bibtex { background: #f8f9fa; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.85em; white-space: pre-wrap; }
+
+  footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; border-top: 1px solid #eee; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>SenseMath</h1>
+  <div class="subtitle">Evaluating Number Sense in Large Language Models</div>
+  <div class="authors">Haomin Zhuang, Xiangqi Wang, Yili Shen, Ying Cheng, Xiangliang Zhang</div>
+  <div class="affil">University of Notre Dame</div>
+  <div class="badges">
+    <a href="https://arxiv.org/abs/XXXX.XXXXX" class="btn-paper">📄 Paper</a>
+    <a href="https://github.com/zhmzm/SenseMath" class="btn-code">💻 Code</a>
+    <a href="https://github.com/zhmzm/SenseMath/tree/main/benchmark" class="btn-data">📊 Dataset</a>
+  </div>
+</div>
+
+<div class="container">
+
+<h2>Abstract</h2>
+<p class="abstract">
+Large language models default to step-by-step computation even when efficient numerical shortcuts exist. We introduce <strong>SenseMath</strong>, a controlled benchmark that measures whether LLMs can exploit number-sense shortcuts when prompted. The benchmark comprises 1,600 matched item families spanning 8 categories and 4 digit scales, each with strong-shortcut, weak-shortcut, and control variants. We evaluate 5 models under chain-of-thought (CoT), number-sense (NS), and strict prompting conditions. We find that NS prompting induces a broad shortcut-seeking mode: accuracy on shortcut-amenable items is maintained or improved while control accuracy drops. Per-category analysis reveals that models show selective strengths and reversals across shortcut types, establishing number sense as a multi-dimensional construct. A three-level evaluation framework (Use, Judge, Generate) confirms that shortcut exploitation, recognition, and construction dissociate across models.
+</p>
+
+<h2>Main Results</h2>
+
+<div class="fig-container">
+  <img src="https://raw.githubusercontent.com/zhmzm/SenseMath/main/assets/fig_rq1_combined.png" alt="Main Results">
+  <div class="fig-caption">NS prompting effect across digit scales and models. NS maintains strong-item accuracy while reducing control accuracy.</div>
+</div>
+
+<div class="highlight-box">
+  <strong>Key mechanism:</strong> NS prompting uniformly increases shortcut strategy usage (from 20–39% under CoT to 68–86% under NS), but these strategies succeed on strong items (where valid shortcuts exist) and fail on control items (where no shortcut applies), producing the observed accuracy asymmetry.
+</div>
+
+<h2>Benchmark Design</h2>
+
+<table>
+  <tr><th>Property</th><th>Value</th></tr>
+  <tr><td>Categories</td><td>8 (3 tiers: problem-level, reasoning-level, option-level)</td></tr>
+  <tr><td>Digit scales</td><td>d ∈ {2, 4, 8, 16}</td></tr>
+  <tr><td>Families</td><td>1,600 (50 per category × 8 × 4 scales)</td></tr>
+  <tr><td>Variants</td><td>3 per family (strong, weak, control)</td></tr>
+  <tr><td>Total items</td><td>4,800</td></tr>
+  <tr><td>Conditions</td><td>CoT, NS, Strict</td></tr>
+</table>
+
+<h3>Per-Category Analysis (d=4)</h3>
+
+<div class="fig-container">
+  <img src="https://raw.githubusercontent.com/zhmzm/SenseMath/main/assets/fig_bar_d4.png" alt="Per-category bar chart">
+  <div class="fig-caption">Per-category accuracy on strong-shortcut items at d=4. Blue = CoT, Red = NS.</div>
+</div>
+
+<h2>Results Summary (d=4)</h2>
+
+<table>
+  <tr><th>Model</th><th>CoT Acc (S/C)</th><th>NS Acc (S/C)</th><th>NS Rate</th><th>95% CI</th></tr>
+  <tr><td>GPT-4o-mini</td><td>78/65</td><td>84/63</td><td>27%→77%</td><td>[+.015, +.147] ✓</td></tr>
+  <tr><td>GPT-4.1-mini</td><td>88/76</td><td>96/83</td><td>20%→68%</td><td>[−.035, +.075]</td></tr>
+  <tr><td>Qwen3-30B</td><td>68/56</td><td>73/56</td><td>39%→86%</td><td>[−.020, +.095]</td></tr>
+  <tr><td>Qwen3-8B</td><td>74/65</td><td>72/53</td><td>37%→86%</td><td>[+.032, +.158] ✓</td></tr>
+  <tr><td>Llama-3.1-8B</td><td>66/58</td><td>59/55</td><td>31%→78%</td><td>[−.125, +.035]</td></tr>
+</table>
+
+<h2>Citation</h2>
+
+<div class="bibtex">@article{zhuang2025sensemath,
+  title={SenseMath: Evaluating Number Sense in Large Language Models},
+  author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2025}
+}</div>
+
+</div>
+
+<footer>
+  SenseMath &copy; 2025 Haomin Zhuang et al., University of Notre Dame. MIT License.
+</footer>
+
+</body>
+</html>

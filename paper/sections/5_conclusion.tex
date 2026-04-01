@@ -1,0 +1,25 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This work introduced \textsc{SenseMath}, a controlled benchmark that measures prompt-sensitive shortcut exploitation on matched item families.
+By pairing strong-shortcut, weak-shortcut, and control variants within each family, the benchmark isolates the prompting asymmetry from confounds such as general prompt quality or item difficulty.
+
+Our experiments across five models yield three main findings.
+First, a category-agnostic NS prompt produces an asymmetric effect at $d{=}4$: accuracy on shortcut-amenable items is maintained or improved while accuracy on matched controls drops, most consistently for GPT-4o-mini and Qwen3-8B.
+Second, per-category radar profiles reveal that models show selective strengths and reversals across shortcut types. Qwen models lead on magnitude estimation and structural shortcuts, while GPT-4o-mini dominates cancellation, equation reasoning, and option elimination. This establishes number sense as a multi-dimensional construct rather than a single ability.
+Third, a three-level evaluation (Use, Judge, Generate) reveals crossed dissociations: models that exploit shortcuts well do not necessarily recognise when shortcuts apply, and vice versa.
+
+\paragraph{Limitations.}
+Several limitations qualify these findings.
+We have not conducted a human behavioural study to anchor LLM performance against human number sense; such a study is planned but not yet complete.
+The benchmark contains 50 families per category, which is sufficient for detecting moderate-to-large effects but limits statistical power for fine-grained within-category analyses.
+The Strict prompting condition produces truncated responses for open-weight models at 512 tokens, restricting its use as a negative control to GPT-4o-mini.
+The multiple-choice format constrains the space of possible responses; free-response evaluation would provide richer signal about the reasoning process.
+Finally, the 8 categories, while grounded in the mathematics education literature, are not exhaustive. Other shortcut types (e.g., modular arithmetic, dimensional analysis) remain untested.
+
+\paragraph{Future directions.}
+Several extensions follow naturally from this work.
+A human validation study would establish whether the shortcut profiles we observe in LLMs mirror human number-sense behaviour.
+Moving from multiple-choice to free-response items would allow finer-grained analysis of how models construct shortcut strategies.
+Evaluating additional models, particularly reasoning-specialised systems and larger open-weight models, would clarify how number sense scales with model capability and training data.
+Finally, the asymmetric prompting effects documented here suggest that shortcut-sensitive reasoning is in principle trainable; targeted fine-tuning on curated shortcut solutions could shift models from algorithmic defaults toward more flexible numerical reasoning.
