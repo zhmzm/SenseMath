@@ -1,4 +1,4 @@
-# SenseMath: Evaluating Number Sense in Large Language Models
+# SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models
 
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg" alt="arXiv"></a>
@@ -135,7 +135,7 @@ SenseMath/
 
 ```bibtex
 @article{zhuang2025sensemath,
-  title={SenseMath: Evaluating Number Sense in Large Language Models},
+  title={SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models},
   author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
