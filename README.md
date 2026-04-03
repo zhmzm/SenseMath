@@ -1,4 +1,4 @@
-# SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models
+# SenseMath: Do LLMs Have Number Sense? Evaluating Shortcut Use, Judgment, and Generation
 
 <p align="center">
   <a href="https://arxiv.org/abs/2604.01988"><img src="https://img.shields.io/badge/arXiv-2604.01988-b31b1b.svg" alt="arXiv"></a>
@@ -135,7 +135,7 @@ SenseMath/
 
 ```bibtex
 @article{zhuang2025sensemath,
-  title={SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models},
+  title={SenseMath: Do LLMs Have Number Sense? Evaluating Shortcut Use, Judgment, and Generation},
   author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
   journal={arXiv preprint arXiv:2604.01988},
   year={2025}
