@@ -1,7 +1,7 @@
 # SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models
 
 <p align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2604.01988"><img src="https://img.shields.io/badge/arXiv-2604.01988-b31b1b.svg" alt="arXiv"></a>
   <a href="https://zhmzm.github.io/SenseMath/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page"></a>
   <a href="https://huggingface.co/datasets/DaydreamerMZM/SenseMath"><img src="https://img.shields.io/badge/🤗-Dataset-yellow" alt="HuggingFace"></a>
   <a href="#license"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
@@ -137,7 +137,7 @@ SenseMath/
 @article{zhuang2025sensemath,
   title={SenseMath: When Number Sense Helps Numerical Reasoning in Large Language Models},
   author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2604.01988},
   year={2025}
 }
 ```
