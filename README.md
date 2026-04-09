@@ -19,9 +19,12 @@
 
 ## Key Findings
 
-- **NS prompting induces a broad shortcut-seeking mode**: accuracy on shortcut-amenable items is maintained or improved while control accuracy drops, reliably for GPT-4o-mini and Qwen3-8B
-- **Number sense is multi-dimensional**: models show selective strengths and reversals across 8 shortcut categories
-- **Three-level evaluation** (Use, Judge, Generate) reveals crossed dissociations in shortcut competence
+We evaluate five models (GPT-4o-mini, GPT-4.1-mini, Qwen3-30B, Qwen3-8B, and Llama-3.1-8B) under varying prompting conditions, over a total of 72,000 inferences on SenseMath. These evaluations span three levels of increasing cognitive demand: Shortcut Use, Applicability Judgment, and Problem Generation.
+
+- **RQ1: Do LLMs invoke shortcuts spontaneously?** Sometimes. Under standard CoT prompting, shortcut strategies appear in fewer than 40% of responses at d=4, though this rate increases with digit scale.
+- **RQ2: Can LLMs apply shortcuts when instructed?** Yes, but more for capable models. When explicitly instructed, capable models achieve accuracy gains of up to 15% (GPT-4.1-mini at d=8), while 8B-parameter models show no benefit or even degradation.
+- **RQ3: Do LLMs misuse shortcuts?** Yes, severely. Models accept nearly all problems as shortcut-amenable (control rejection rate as low as 0%) and over-apply estimation strategies, reducing accuracy on control items by up to 12%.
+- **RQ4: Can LLMs generate shortcut problems?** Largely failed. Models construct valid shortcut-amenable problems at only 2–24% pass rate, reproducing the surface form but not the structural constraints that make a shortcut effective.
 
 ## Benchmark
 
