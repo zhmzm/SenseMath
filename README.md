@@ -134,11 +134,11 @@ SenseMath/
 ## Citation
 
 ```bibtex
-@article{zhuang2025sensemath,
+@article{zhuang2026sensemath,
   title={SenseMath: Do LLMs Have Number Sense? Evaluating Shortcut Use, Judgment, and Generation},
   author={Zhuang, Haomin and Wang, Xiangqi and Shen, Yili and Cheng, Ying and Zhang, Xiangliang},
   journal={arXiv preprint arXiv:2604.01988},
-  year={2025}
+  year={2026}
 }
 ```
 
