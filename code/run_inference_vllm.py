@@ -3,7 +3,7 @@
 SenseMath v2 Inference + Analysis Pipeline.
 
 Runs Use-level inference on the v2 item-family benchmark (6 categories, 3 variants).
-Also supports Judge (J1/J2/J3) and Generate (G1/G2) tasks.
+Also supports Judge (J1/J2) and Generate (G1/G2) tasks.
 
 Usage:
   # Inference (GPU required)

@@ -30,16 +30,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which of the following is the best estimate for 10100 * 10140?\n(A) 102414010  (B) 102413990  (C) 102414020  (D) 102414000"
   },
   {
-    "task_id": "J1_option_elimination_000765_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 9071 × 8363?\n(A) 88380773  (B) 86000773  (C) 80270773  (D) 75860773",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 9071 × 8363?\n(A) 88380773  (B) 86000773  (C) 80270773  (D) 75860773"
-  },
-  {
     "task_id": "J1_landmark_comparison_000677_control",
     "task_type": "J1_strategy_appropriateness",
     "category": "landmark_comparison",
@@ -48,16 +38,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 73% of 23770 greater than 9136?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
-  },
-  {
-    "task_id": "J1_option_elimination_000798_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 2760 × 5986?\n(A) 16521360  (B) 16521380  (C) 16521361  (D) 16521359",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2760 × 5986?\n(A) 16521360  (B) 16521380  (C) 16521361  (D) 16521359"
   },
   {
     "task_id": "J1_structural_shortcuts_000494_control",
@@ -108,16 +88,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.865875,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 2470 × 5025.\n(A) 12411760  (B) 12411750  (C) 12411770  (D) 12411740"
-  },
-  {
-    "task_id": "J1_option_elimination_000752_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 4077 × 6150?\n(A) 25073551  (B) 25073552  (C) 25073550  (D) 25073549",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4077 × 6150?\n(A) 25073551  (B) 25073552  (C) 25073550  (D) 25073549"
   },
   {
     "task_id": "J1_landmark_comparison_000666_strong_shortcut",
@@ -188,16 +158,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 9047 × 9028.\n(A) 81676306  (B) 81676316  (C) 81676336  (D) 81676326"
-  },
-  {
-    "task_id": "J1_option_elimination_000778_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 3947 × 4463?\n(A) 18675461  (B) 17615461  (C) 14985461  (D) 17575461",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3947 × 4463?\n(A) 18675461  (B) 17615461  (C) 14985461  (D) 17575461"
   },
   {
     "task_id": "J1_relative_distance_000529_weak_shortcut",
@@ -280,16 +240,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 2497 × 3111.\n(A) 7768177  (B) 7768167  (C) 7768157  (D) 7768187"
   },
   {
-    "task_id": "J1_option_elimination_000797_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 3925 × 5618?\n(A) 22050670  (B) 22050651  (C) 22050649  (D) 22050650",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3925 × 5618?\n(A) 22050670  (B) 22050651  (C) 22050649  (D) 22050650"
-  },
-  {
     "task_id": "J1_compatible_numbers_000645_control",
     "task_type": "J1_strategy_appropriateness",
     "category": "compatible_numbers",
@@ -360,16 +310,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 6789 + 9091 - 9099\n(A) 6781  (B) 6791  (C) 6771  (D) 6801"
   },
   {
-    "task_id": "J1_option_elimination_000777_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 2895 × 9642?\n(A) 27913591  (B) 27913600  (C) 27913590  (D) 27913589",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2895 × 9642?\n(A) 27913591  (B) 27913600  (C) 27913590  (D) 27913589"
-  },
-  {
     "task_id": "J1_cancellation_identity_000556_control",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -400,16 +340,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 3344 + 1236 - 1733\n(A) 2867  (B) 2847  (C) 2837  (D) 2857"
   },
   {
-    "task_id": "J1_option_elimination_000758_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 1649 × 9833?\n(A) 16214617  (B) 17424617  (C) 14514617  (D) 16024617",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 1649 × 9833?\n(A) 16214617  (B) 17424617  (C) 14514617  (D) 16024617"
-  },
-  {
     "task_id": "J1_compatible_numbers_000613_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "compatible_numbers",
@@ -428,16 +358,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.008393940467582184,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which is larger: 1473/2971 or 843/1672?\n(A) 843/1672  (B) 807/2616  (C) 1473/2971  (D) 2865/4160"
-  },
-  {
-    "task_id": "J1_option_elimination_000789_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 7373 × 4227?\n(A) 30475671  (B) 31455671  (C) 32725671  (D) 31165671",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7373 × 4227?\n(A) 30475671  (B) 31455671  (C) 32725671  (D) 31165671"
   },
   {
     "task_id": "J1_landmark_comparison_000668_control",
@@ -560,16 +480,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 9092 + 3990 - 6160\n(A) 6922  (B) 6912  (C) 6942  (D) 6932"
   },
   {
-    "task_id": "J1_option_elimination_000761_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 4770 × 3207?\n(A) 15297389  (B) 15297391  (C) 15297390  (D) 15297392",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4770 × 3207?\n(A) 15297389  (B) 15297391  (C) 15297390  (D) 15297392"
-  },
-  {
     "task_id": "J1_cancellation_identity_000589_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -670,16 +580,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 55% of 76930 greater than 26921?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
   },
   {
-    "task_id": "J1_option_elimination_000796_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 3560 × 8686?\n(A) 30922160  (B) 30922159  (C) 30922170  (D) 30922161",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3560 × 8686?\n(A) 30922160  (B) 30922159  (C) 30922170  (D) 30922161"
-  },
-  {
     "task_id": "J1_relative_distance_000503_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "relative_distance",
@@ -758,16 +658,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 6703 + 7620 - 4009\n(A) 10304  (B) 10334  (C) 10314  (D) 10324"
-  },
-  {
-    "task_id": "J1_option_elimination_000789_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 3121 × 1321?\n(A) 4122842  (B) 4122840  (C) 4122841  (D) 4122844",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3121 × 1321?\n(A) 4122842  (B) 4122840  (C) 4122841  (D) 4122844"
   },
   {
     "task_id": "J1_magnitude_estimation_000447_strong_shortcut",
@@ -890,16 +780,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 9092 + 3990 - 3996\n(A) 9086  (B) 9076  (C) 9106  (D) 9096"
   },
   {
-    "task_id": "J1_option_elimination_000764_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 1555 × 8380?\n(A) 13030899  (B) 13030901  (C) 13030900  (D) 13030880",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 1555 × 8380?\n(A) 13030899  (B) 13030901  (C) 13030900  (D) 13030880"
-  },
-  {
     "task_id": "J1_cancellation_identity_000582_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -948,16 +828,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.9997,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 9997 * 4873?\n(A) 48715391  (B) 48715401  (C) 48715381  (D) 48715371"
-  },
-  {
-    "task_id": "J1_option_elimination_000801_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 2531 × 7515?\n(A) 19020468  (B) 19020465  (C) 19020466  (D) 19020464",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2531 × 7515?\n(A) 19020468  (B) 19020465  (C) 19020466  (D) 19020464"
   },
   {
     "task_id": "J1_landmark_comparison_000695_weak_shortcut",
@@ -1110,16 +980,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 1890 + 2392 - 2378\n(A) 1894  (B) 1924  (C) 1914  (D) 1904"
   },
   {
-    "task_id": "J1_option_elimination_000773_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 9530 × 7204?\n(A) 68654100  (B) 68654120  (C) 68654121  (D) 68654119",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 9530 × 7204?\n(A) 68654100  (B) 68654120  (C) 68654121  (D) 68654119"
-  },
-  {
     "task_id": "J1_cancellation_identity_000560_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -1128,16 +988,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.9977422996290921,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 5500 + 6201 - 6187\n(A) 5504  (B) 5534  (C) 5524  (D) 5514"
-  },
-  {
-    "task_id": "J1_option_elimination_000779_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 6361 × 8057?\n(A) 45500577  (B) 47680577  (C) 55870577  (D) 51250577",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 6361 × 8057?\n(A) 45500577  (B) 47680577  (C) 55870577  (D) 51250577"
   },
   {
     "task_id": "J1_relative_distance_000513_control",
@@ -1280,26 +1130,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 8668 × 1774.\n(A) 15377052  (B) 15377032  (C) 15377042  (D) 15377022"
   },
   {
-    "task_id": "J1_option_elimination_000794_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 2459 × 1543?\n(A) 3907237  (B) 3794237  (C) 3474237  (D) 3604237",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2459 × 1543?\n(A) 3907237  (B) 3794237  (C) 3474237  (D) 3604237"
-  },
-  {
-    "task_id": "J1_option_elimination_000758_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 7525 × 5474?\n(A) 41191853  (B) 41191849  (C) 41191851  (D) 41191850",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7525 × 5474?\n(A) 41191853  (B) 41191849  (C) 41191851  (D) 41191850"
-  },
-  {
     "task_id": "J1_landmark_comparison_000683_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "landmark_comparison",
@@ -1308,16 +1138,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.98,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 27% of 87480 greater than 24547?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
-  },
-  {
-    "task_id": "J1_option_elimination_000759_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 7167 × 1638?\n(A) 11739545  (B) 11739546  (C) 11739548  (D) 11739547",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7167 × 1638?\n(A) 11739545  (B) 11739546  (C) 11739548  (D) 11739547"
   },
   {
     "task_id": "J1_relative_distance_000515_strong_shortcut",
@@ -1368,16 +1188,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.9995,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 9995 * 6902?\n(A) 68985500  (B) 68985480  (C) 68985510  (D) 68985490"
-  },
-  {
-    "task_id": "J1_option_elimination_000776_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 4761 × 9455?\n(A) 39715255  (B) 37465255  (C) 42125255  (D) 45015255",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4761 × 9455?\n(A) 39715255  (B) 37465255  (C) 42125255  (D) 45015255"
   },
   {
     "task_id": "J1_equation_reasoning_000743_strong_shortcut",
@@ -1560,16 +1370,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 5551 * 6681?\n(A) 37086251  (B) 37086221  (C) 37086241  (D) 37086231"
   },
   {
-    "task_id": "J1_option_elimination_000797_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 6777 × 6015?\n(A) 4076361  (B) 4076365567  (C) 40763655  (D) 8152727",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 6777 × 6015?\n(A) 4076361  (B) 4076365567  (C) 40763655  (D) 8152727"
-  },
-  {
     "task_id": "J1_landmark_comparison_000690_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "landmark_comparison",
@@ -1628,16 +1428,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which of the following is the best estimate for 4064 * 6832?\n(A) 27765238  (B) 27765248  (C) 27765268  (D) 27765258"
-  },
-  {
-    "task_id": "J1_option_elimination_000787_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 4010 × 6726?\n(A) 26971261  (B) 26971259  (C) 26971260  (D) 26971240",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4010 × 6726?\n(A) 26971261  (B) 26971259  (C) 26971260  (D) 26971240"
   },
   {
     "task_id": "J1_structural_shortcuts_000480_strong_shortcut",
@@ -1708,26 +1498,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which of the following is the best estimate for 4150 * 6200?\n(A) 25729990  (B) 25730000  (C) 25730010  (D) 25730020"
-  },
-  {
-    "task_id": "J1_option_elimination_000795_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 4260 × 6314?\n(A) 26897620  (B) 26897641  (C) 26897640  (D) 26897639",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4260 × 6314?\n(A) 26897620  (B) 26897641  (C) 26897640  (D) 26897639"
-  },
-  {
-    "task_id": "J1_option_elimination_000779_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 5240 × 2594?\n(A) 13592550  (B) 13592561  (C) 13592560  (D) 13592559",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 5240 × 2594?\n(A) 13592550  (B) 13592561  (C) 13592560  (D) 13592559"
   },
   {
     "task_id": "J1_landmark_comparison_000701_strong_shortcut",
@@ -1820,16 +1590,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 1273 × 5384.\n(A) 6853832  (B) 6853842  (C) 6853852  (D) 6853822"
   },
   {
-    "task_id": "J1_option_elimination_000799_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 9135 × 5574?\n(A) 50918470  (B) 50918489  (C) 50918490  (D) 50918491",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 9135 × 5574?\n(A) 50918470  (B) 50918489  (C) 50918490  (D) 50918491"
-  },
-  {
     "task_id": "J1_cancellation_identity_000575_control",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -1858,16 +1618,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.98525,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 4910 × 1977.\n(A) 9707060  (B) 9707080  (C) 9707090  (D) 9707070"
-  },
-  {
-    "task_id": "J1_option_elimination_000787_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 3567 × 7987?\n(A) 28489629  (B) 28489630  (C) 28489628  (D) 28489632",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3567 × 7987?\n(A) 28489629  (B) 28489630  (C) 28489628  (D) 28489632"
   },
   {
     "task_id": "J1_cancellation_identity_000575_strong_shortcut",
@@ -2000,16 +1750,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 37% of 79090 greater than 21700?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
   },
   {
-    "task_id": "J1_option_elimination_000765_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 1104 × 5487?\n(A) 6057649  (B) 6057647  (C) 6057650  (D) 6057648",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 1104 × 5487?\n(A) 6057649  (B) 6057647  (C) 6057650  (D) 6057648"
-  },
-  {
     "task_id": "J1_compatible_numbers_000636_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "compatible_numbers",
@@ -2100,16 +1840,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 83% of 37310 greater than 17689?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
   },
   {
-    "task_id": "J1_option_elimination_000766_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 8240 × 8382?\n(A) 69067681  (B) 69067679  (C) 69067680  (D) 69067670",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 8240 × 8382?\n(A) 69067681  (B) 69067679  (C) 69067680  (D) 69067670"
-  },
-  {
     "task_id": "J1_cancellation_identity_000566_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "cancellation_identity",
@@ -2160,16 +1890,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which is larger: 1728/3501 or 2270/4450?\n(A) 2270/4450  (B) 1728/3501  (C) 1351/1861  (D) 2737/3933"
   },
   {
-    "task_id": "J1_option_elimination_000787_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 7953 × 6161?\n(A) 39698433  (B) 47548433  (C) 48998433  (D) 39668433",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7953 × 6161?\n(A) 39698433  (B) 47548433  (C) 48998433  (D) 39668433"
-  },
-  {
     "task_id": "J1_magnitude_estimation_000449_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "magnitude_estimation",
@@ -2210,16 +1930,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What value fills the blank?  4797 + 4493 + ___ = 4493 + 6033 + 9221\n(A) 10457  (B) 10447  (C) 10467  (D) 10477"
   },
   {
-    "task_id": "J1_option_elimination_000791_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 2605 × 5854?\n(A) 15249650  (B) 15249670  (C) 15249669  (D) 15249671",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2605 × 5854?\n(A) 15249650  (B) 15249670  (C) 15249669  (D) 15249671"
-  },
-  {
     "task_id": "J1_compatible_numbers_000636_control",
     "task_type": "J1_strategy_appropriateness",
     "category": "compatible_numbers",
@@ -2228,16 +1938,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 3753 × 5259.\n(A) 19737037  (B) 19737027  (C) 19737017  (D) 19737047"
-  },
-  {
-    "task_id": "J1_option_elimination_000759_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 4760 × 9768?\n(A) 46495681  (B) 46495679  (C) 46495690  (D) 46495680",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4760 × 9768?\n(A) 46495681  (B) 46495679  (C) 46495690  (D) 46495680"
   },
   {
     "task_id": "J1_cancellation_identity_000596_weak_shortcut",
@@ -2370,16 +2070,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 26% of 60670 greater than 16769?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
   },
   {
-    "task_id": "J1_option_elimination_000792_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 3210 × 3880?\n(A) 12454780  (B) 12454799  (C) 12454801  (D) 12454800",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3210 × 3880?\n(A) 12454780  (B) 12454799  (C) 12454801  (D) 12454800"
-  },
-  {
     "task_id": "J1_compatible_numbers_000608_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "compatible_numbers",
@@ -2390,16 +2080,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Estimate 5009 × 1968.\n(A) 9857722  (B) 9857702  (C) 9857732  (D) 9857712"
   },
   {
-    "task_id": "J1_option_elimination_000754_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 7810 × 8136?\n(A) 63542159  (B) 63542160  (C) 63542170  (D) 63542161",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7810 × 8136?\n(A) 63542159  (B) 63542160  (C) 63542170  (D) 63542161"
-  },
-  {
     "task_id": "J1_landmark_comparison_000682_weak_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "landmark_comparison",
@@ -2408,16 +2088,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.95,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Is 5% of 52750 greater than 15517?\n(A) Yes  (B) No  (C) Cannot be determined  (D) Need more information"
-  },
-  {
-    "task_id": "J1_option_elimination_000757_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 8927 × 2827?\n(A) 21436629  (B) 29656629  (C) 25236629  (D) 26726629",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 8927 × 2827?\n(A) 21436629  (B) 29656629  (C) 25236629  (D) 26726629"
   },
   {
     "task_id": "J1_relative_distance_000533_control",
@@ -2438,16 +2108,6 @@
     "ground_truth": "NO",
     "shortcut_strength": 0.0,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 6105 + 3719 - 5618\n(A) 4206  (B) 4196  (C) 4226  (D) 4216"
-  },
-  {
-    "task_id": "J1_option_elimination_000753_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 7335 × 4896?\n(A) 35912161  (B) 35912140  (C) 35912159  (D) 35912160",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7335 × 4896?\n(A) 35912161  (B) 35912140  (C) 35912159  (D) 35912160"
   },
   {
     "task_id": "J1_compatible_numbers_000607_strong_shortcut",
@@ -2558,16 +2218,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.999330655957162,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Evaluate: 3507 + 2988 - 2990\n(A) 3495  (B) 3525  (C) 3505  (D) 3515"
-  },
-  {
-    "task_id": "J1_option_elimination_000776_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 6135 × 7717?\n(A) 47343795  (B) 47343796  (C) 47343798  (D) 47343794",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 6135 × 7717?\n(A) 47343795  (B) 47343796  (C) 47343798  (D) 47343794"
   },
   {
     "task_id": "J1_equation_reasoning_000741_control",
@@ -2700,26 +2350,6 @@
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What value fills the blank?  5076 × 3938 × 3969 = ___ × 3969 × 5076\n(A) 3928  (B) 3948  (C) 3958  (D) 3938"
   },
   {
-    "task_id": "J1_option_elimination_000778_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 7810 × 8136?\n(A) 63542159  (B) 63542160  (C) 63542170  (D) 63542161",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 7810 × 8136?\n(A) 63542159  (B) 63542160  (C) 63542170  (D) 63542161"
-  },
-  {
-    "task_id": "J1_option_elimination_000793_control",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "control",
-    "problem": "What is 2251 × 9459?\n(A) 25332209  (B) 23342209  (C) 21292209  (D) 23812209",
-    "ground_truth": "NO",
-    "shortcut_strength": 0.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 2251 × 9459?\n(A) 25332209  (B) 23342209  (C) 21292209  (D) 23812209"
-  },
-  {
     "task_id": "J1_magnitude_estimation_000427_strong_shortcut",
     "task_type": "J1_strategy_appropriateness",
     "category": "magnitude_estimation",
@@ -2728,26 +2358,6 @@
     "ground_truth": "YES",
     "shortcut_strength": 0.985,
     "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: Which of the following is the best estimate for 10100 * 10200?\n(A) 103020010  (B) 103020020  (C) 103019990  (D) 103020000"
-  },
-  {
-    "task_id": "J1_option_elimination_000783_weak_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "weak_shortcut",
-    "problem": "What is 3345 × 2034?\n(A) 6803750  (B) 6803730  (C) 6803731  (D) 6803729",
-    "ground_truth": "YES",
-    "shortcut_strength": 0.5,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 3345 × 2034?\n(A) 6803750  (B) 6803730  (C) 6803731  (D) 6803729"
-  },
-  {
-    "task_id": "J1_option_elimination_000755_strong_shortcut",
-    "task_type": "J1_strategy_appropriateness",
-    "category": "option_elimination",
-    "variant": "strong_shortcut",
-    "problem": "What is 4893 × 1523?\n(A) 7452040  (B) 7452042  (C) 7452038  (D) 7452039",
-    "ground_truth": "YES",
-    "shortcut_strength": 1.0,
-    "prompt": "Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: What is 4893 × 1523?\n(A) 7452040  (B) 7452042  (C) 7452038  (D) 7452039"
   },
   {
     "task_id": "J1_compatible_numbers_000644_strong_shortcut",

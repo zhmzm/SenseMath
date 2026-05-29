@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SenseMath v2 Judge Task Inference + Analysis (J1 / J2 / J3).
+SenseMath v2 Judge Task Inference + Analysis (J1 / J2).
 
 Supports both vLLM local models and OpenAI API.
 
@@ -11,7 +11,7 @@ Usage:
   # OpenAI API inference
   python run_judge_tasks.py --step inference --task j1 --api --api-model gpt-5-mini --concurrency 20
 
-  # Run all judge tasks at once
+  # Run paper judge tasks at once
   python run_judge_tasks.py --step inference --task all --model Qwen/Qwen3-30B-A3B-Instruct-2507 --tp 4
 
   # Analyze results
@@ -34,7 +34,6 @@ V2_RESULTS_DIR = SCRIPT_DIR.parent / "results"
 JUDGE_FILES = {
     "j1": V2_DATA_DIR / "judge_j1.json",
     "j2": V2_DATA_DIR / "judge_j2.json",
-    "j3": V2_DATA_DIR / "judge_j3.json",
 }
 
 
@@ -65,19 +64,10 @@ def extract_yes_no(response: str) -> str:
     return ""
 
 
-def extract_ab(response: str) -> str:
-    """Extract A/B from a J3 response."""
+def extract_strategy(response: str) -> str:
+    """Extract SHORTCUT/COMPUTATION from a J2 strategy response."""
     text = re.sub(r"<think>.*?</think>", "", response, flags=re.DOTALL).strip()
-    # Look for "answer ... A/B" pattern first
-    m = re.search(r"(?:answer|choice)[:\s]*\(?([AB])\)?", text, re.IGNORECASE)
-    if m:
-        return m.group(1).upper()
-    # Single A or B at end
-    m = re.search(r"\b([AB])\b\s*\.?\s*$", text)
-    if m:
-        return m.group(1).upper()
-    # First A or B mention
-    m = re.search(r"\b([AB])\b", text)
+    m = re.search(r"\b(SHORTCUT|COMPUTATION)\b", text, re.IGNORECASE)
     if m:
         return m.group(1).upper()
     return ""
@@ -99,7 +89,7 @@ def build_record(item: Dict, task: str, model: str, raw_response: str, token_cou
         "response_token_count": token_count,
     }
 
-    # Variant (J1 has it, J2/J3 may not)
+    # Variant metadata is present in both public judge tasks.
     if "variant" in item:
         rec["variant"] = item["variant"]
 
@@ -108,13 +98,13 @@ def build_record(item: Dict, task: str, model: str, raw_response: str, token_cou
         rec["ground_truth"] = item["ground_truth"]
         rec["predicted"] = extract_yes_no(raw_response)
     elif task == "j2":
-        rec["correct_answer"] = item["correct_answer"]
-        rec["error_type"] = item.get("error_type", "")
-        rec["error_description"] = item.get("error_description", "")
-        rec["predicted"] = raw_response.strip()  # full response, manual scoring
-    elif task == "j3":
-        rec["correct_answer"] = item["correct_answer"]
-        rec["predicted"] = extract_ab(raw_response)
+        rec["ground_truth"] = item["ground_truth"]
+        rec["predicted"] = extract_strategy(raw_response)
+        rec["is_correct"] = rec["predicted"] == rec["ground_truth"]
+        if "source_condition" in item:
+            rec["source_condition"] = item["source_condition"]
+        if "source_description" in item:
+            rec["source_description"] = item["source_description"]
 
     return rec
 
@@ -287,7 +277,7 @@ def run_api_inference(args, task: str):
 # ── Inference dispatcher ──────────────────────────────────────────────────────
 
 def step_inference(args):
-    tasks = ["j1", "j2", "j3"] if args.task == "all" else [args.task]
+    tasks = ["j1", "j2"] if args.task == "all" else [args.task]
 
     for task in tasks:
         print(f"\n{'='*60}")
@@ -308,9 +298,8 @@ def step_analyze(args):
     # Discover all judge result files
     j1_files = sorted(V2_RESULTS_DIR.glob("judge_j1_*.json"))
     j2_files = sorted(V2_RESULTS_DIR.glob("judge_j2_*.json"))
-    j3_files = sorted(V2_RESULTS_DIR.glob("judge_j3_*.json"))
 
-    if not j1_files and not j2_files and not j3_files:
+    if not j1_files and not j2_files:
         print("No judge result files found.")
         return
 
@@ -382,11 +371,12 @@ def step_analyze(args):
                 cat_acc = sum(1 for r in cat_recs if r.get("predicted") == r.get("ground_truth")) / len(cat_recs)
                 print(f"      {cat:<30} {len(cat_recs):>4} items  {cat_acc:>6.1%}")
 
-    # ── J2 Analysis (free-text, summary only) ────────────────────────────
+    # ── J2 Analysis (strategy identification accuracy) ───────────────────
     if j2_files:
-        print(f"\n--- J2: Error Detection (free-text, manual scoring) ---")
-        print(f"  {'Model':<35} {'N':>5} {'AvgLen':>8}")
-        print(f"  {'-'*50}")
+        print(f"\n--- J2: Strategy Identification (SHORTCUT/COMPUTATION) ---")
+        print(f"  {'Model':<35} {'N':>5} {'Acc%':>7} | "
+              f"{'SHORT':>7} {'COMP':>7}")
+        print(f"  {'-'*70}")
 
         for fpath in j2_files:
             records = load_json(fpath)
@@ -394,63 +384,31 @@ def step_analyze(args):
                 continue
             model = records[0]["model"]
             model_short = model.split("/")[-1][:33]
-            n = len(records)
-            avg_len = sum(len(r.get("raw_response", "")) for r in records) / n if n else 0
+            aligned = [r for r in records if "ground_truth" in r]
+            n = len(aligned)
+            correct = sum(1 for r in aligned if r.get("predicted") == r.get("ground_truth"))
+            acc = correct / n if n else 0
 
-            print(f"  {model_short:<35} {n:>5} {avg_len:>7.0f}")
+            class_acc = {}
+            for label in ("SHORTCUT", "COMPUTATION"):
+                label_recs = [r for r in aligned if r.get("ground_truth") == label]
+                class_acc[label] = (
+                    sum(1 for r in label_recs if r.get("predicted") == label) / len(label_recs)
+                    if label_recs else float("nan")
+                )
+
+            print(f"  {model_short:<35} {n:>5} {acc:>6.1%} | "
+                  f"{class_acc.get('SHORTCUT', 0):>6.1%} "
+                  f"{class_acc.get('COMPUTATION', 0):>6.1%}")
 
             summary[f"J2|{safe_model_name(model)}"] = {
                 "model": model, "task": "J2", "n": n,
-                "avg_response_length": round(avg_len, 1),
-                "note": "Manual scoring required",
-            }
-
-    # ── J3 Analysis (A/B accuracy) ───────────────────────────────────────
-    if j3_files:
-        print(f"\n--- J3: Pairwise Efficiency (A/B) ---")
-        print(f"  {'Model':<35} {'N':>5} {'Acc%':>7}")
-        print(f"  {'-'*50}")
-
-        for fpath in j3_files:
-            records = load_json(fpath)
-            if not records:
-                continue
-            model = records[0]["model"]
-            model_short = model.split("/")[-1][:33]
-
-            total = len(records)
-            correct = sum(1 for r in records if r.get("predicted") == r.get("correct_answer"))
-            acc = correct / total if total else 0
-
-            print(f"  {model_short:<35} {total:>5} {acc:>6.1%}")
-
-            # Per-category breakdown
-            categories = sorted(set(r["category"] for r in records))
-            cat_detail = {}
-            for cat in categories:
-                cat_recs = [r for r in records if r["category"] == cat]
-                cat_acc = sum(1 for r in cat_recs if r.get("predicted") == r.get("correct_answer")) / len(cat_recs)
-                cat_detail[cat] = round(cat_acc, 4)
-
-            summary[f"J3|{safe_model_name(model)}"] = {
-                "model": model, "task": "J3", "n": total,
                 "accuracy": round(acc, 4),
-                "category_accuracy": cat_detail,
+                "strategy_accuracy": {
+                    "SHORTCUT": round(class_acc.get("SHORTCUT", 0), 4),
+                    "COMPUTATION": round(class_acc.get("COMPUTATION", 0), 4),
+                },
             }
-
-        # Detailed per-category table
-        print(f"\n  J3 per-category breakdown:")
-        for fpath in j3_files:
-            records = load_json(fpath)
-            if not records:
-                continue
-            model_short = records[0]["model"].split("/")[-1][:25]
-            categories = sorted(set(r["category"] for r in records))
-            print(f"    {model_short}:")
-            for cat in categories:
-                cat_recs = [r for r in records if r["category"] == cat]
-                cat_acc = sum(1 for r in cat_recs if r.get("predicted") == r.get("correct_answer")) / len(cat_recs)
-                print(f"      {cat:<30} {len(cat_recs):>4} items  {cat_acc:>6.1%}")
 
     # Save summary
     out_path = V2_RESULTS_DIR / "judge_analysis.json"
@@ -462,13 +420,13 @@ def step_analyze(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SenseMath v2 Judge Task Inference + Analysis (J1/J2/J3)")
+        description="SenseMath v2 Judge Task Inference + Analysis (J1/J2)")
 
     parser.add_argument("--step", required=True,
                         choices=["inference", "analyze"])
     parser.add_argument("--task", default="all",
-                        choices=["j1", "j2", "j3", "all"],
-                        help="Which judge task to run (default: all)")
+                        choices=["j1", "j2", "all"],
+                        help="Which judge task to run. all runs paper J1/J2.")
 
     # vLLM options
     parser.add_argument("--model", default="Qwen/Qwen3-30B-A3B-Instruct-2507",

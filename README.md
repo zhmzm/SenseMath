@@ -84,7 +84,7 @@ python code/run_inference_api.py --step inference --model gpt-4o-mini --scale 4
 ### Three-Level Evaluation
 
 ```bash
-# Judge tasks (J1: shortcut recognition, J2: strategy identification)
+# Judge tasks (J1: shortcut appropriateness, J2: strategy identification)
 python code/run_judge_tasks.py --step inference --task j1 --api --api-model gpt-4.1-mini
 
 # Generate tasks (G2: problem construction + 6-check verification)
@@ -127,7 +127,7 @@ python code/verify_g2.py
 
 ```
 SenseMath/
-├── benchmark/          # Cleaned benchmark dataset (4 scales + judge tasks)
+├── benchmark/          # Cleaned benchmark dataset (4 scales + paper-aligned judge tasks)
 ├── code/               # Inference, evaluation, and figure generation scripts
 ├── paper/              # LaTeX source and figures
 ├── results/            # Output directory for experiments

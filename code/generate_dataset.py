@@ -3,7 +3,7 @@
 SenseMath v2 Dataset Generator
 ==============================
 Generates item-family benchmark with 6 categories × 3 variants (strong/weak/control)
-plus Judge and Generate task items.
+plus Generate task items.
 
 New in v2:
   - 2 new categories: compatible_numbers, landmark_comparison
@@ -12,7 +12,7 @@ New in v2:
   - Typed distractors from plausible errors
   - Free-response format for 30% of families
   - Shortcut strength metadata (continuous, category-specific)
-  - Judge tasks (J1, J2, J3) and Generate tasks (G1, G2)
+  - Generate tasks (G1, G2)
 
 Usage:
   # Phase 1: small test
@@ -21,8 +21,8 @@ Usage:
   # Phase 2: full benchmark
   python generate_dataset_v2.py --phase full --digits 2 4 8
 
-  # Generate Judge/Generate tasks
-  python generate_dataset_v2.py --phase judge --digits 2 4
+  # Generate task prompts
+  python generate_dataset_v2.py --phase generate --digits 2
 """
 
 import argparse
@@ -1051,147 +1051,6 @@ def generate_free_response(families: List[Dict], fraction: float = 0.3) -> List[
     return fr_items
 
 
-# ── Judge task generators ────────────────────────────────────────────────────
-
-def generate_j1_items(families: List[Dict], n: int = 300) -> List[Dict]:
-    """J1: Strategy Appropriateness — is a shortcut effective for this problem?"""
-    items = []
-    per_cat = n // len(CATEGORIES)
-    for cat in CATEGORIES:
-        cat_fams = [f for f in families if f["category"] == cat]
-        random.shuffle(cat_fams)
-        count = 0
-        for fam in cat_fams:
-            if count >= per_cat:
-                break
-            for var in ("strong_shortcut", "weak_shortcut", "control"):
-                task = fam[var]
-                ground_truth = "YES" if var != "control" else "NO"
-                opts = task['pure_math']['options']
-                opt_str = f"(A) {opts[0]}  (B) {opts[1]}  (C) {opts[2]}  (D) {opts[3]}" if opts and len(opts) == 4 else ""
-                problem_text = task['pure_math']['question']
-                if opt_str:
-                    problem_text = f"{problem_text}\n{opt_str}"
-                items.append({
-                    "task_id": f"J1_{fam['family_id']}_{var}",
-                    "task_type": "J1_strategy_appropriateness",
-                    "category": cat,
-                    "variant": var,
-                    "problem": problem_text,
-                    "ground_truth": ground_truth,
-                    "shortcut_strength": task["shortcut_strength"],
-                    "prompt": f"Consider this math problem. Could you solve it significantly faster using mental math or a clever observation, compared to computing it step by step? Answer YES or NO, then explain in one sentence why.\n\nProblem: {problem_text}",
-                })
-            count += 1
-    random.shuffle(items)
-    return items[:n]
-
-
-def generate_j2_items(families: List[Dict], n: int = 120) -> List[Dict]:
-    """J2: Error Detection — find the planted error in an NS solution."""
-    items = []
-    per_cat = n // len(CATEGORIES)
-    error_types = ["wrong_rounding", "wrong_operand", "arithmetic_slip", "transcription_error"]
-
-    for cat in CATEGORIES:
-        cat_fams = [f for f in families if f["category"] == cat]
-        random.shuffle(cat_fams)
-        for i, fam in enumerate(cat_fams[:per_cat]):
-            task = fam["strong_shortcut"]
-            pm = task["pure_math"]
-            error_type = error_types[i % len(error_types)]
-
-            # Generate a plausible wrong NS solution
-            correct_val = pm["correct_value"]
-            if error_type == "wrong_rounding":
-                wrong_val = correct_val + random.choice([-1, 1]) * max(1, abs(correct_val) // 20)
-                error_desc = "Rounded in the wrong direction"
-            elif error_type == "wrong_operand":
-                wrong_val = correct_val * random.choice([2, 0.5])
-                error_desc = "Applied shortcut to wrong operand"
-            elif error_type == "arithmetic_slip":
-                wrong_val = correct_val + random.choice([-1, 1]) * random.randint(1, 5)
-                error_desc = "Arithmetic slip in the shortcut step"
-            else:
-                wrong_val = correct_val
-                wrong_val_str = str(int(wrong_val))
-                if len(wrong_val_str) > 1:
-                    idx = random.randint(0, len(wrong_val_str) - 1)
-                    new_digit = str((int(wrong_val_str[idx]) + random.randint(1, 3)) % 10)
-                    wrong_val = int(wrong_val_str[:idx] + new_digit + wrong_val_str[idx+1:])
-                error_desc = "Transcription error in final answer"
-
-            fake_solution = f"Using {task['ns_shortcut']}\nApproximation gives: {int(wrong_val)}"
-
-            items.append({
-                "task_id": f"J2_{fam['family_id']}",
-                "task_type": "J2_error_detection",
-                "category": cat,
-                "problem": pm["question"],
-                "correct_answer": str(pm["answer"]),
-                "ns_solution_with_error": fake_solution,
-                "error_type": error_type,
-                "error_description": error_desc,
-                "prompt": f"This solution attempts to use a number sense shortcut. Find the error and explain what went wrong.\n\nProblem: {pm['question']}\n\nSolution: {fake_solution}",
-            })
-
-    random.shuffle(items)
-    return items[:n]
-
-
-def generate_j3_items(families: List[Dict], n: int = 100) -> List[Dict]:
-    """J3: Pairwise Efficiency — which solution uses fewer reasoning steps?"""
-    items = []
-    per_cat = n // len(CATEGORIES)
-
-    # Step-count inventory (preregistered)
-    step_counts = {
-        "magnitude_estimation": {"ns": 2, "algo": 4},  # NS: round + multiply; Algo: digit-by-digit multiply + round
-        "structural_shortcuts": {"ns": 3, "algo": 4},   # NS: decompose + two multiplies + add; Algo: full multiply
-        "relative_distance": {"ns": 2, "algo": 3},      # NS: compare to benchmark; Algo: cross-multiply + compare
-        "cancellation_identity": {"ns": 2, "algo": 3},   # NS: compute offset + add; Algo: two additions
-        "compatible_numbers": {"ns": 2, "algo": 4},      # NS: round + multiply; Algo: digit-by-digit
-        "landmark_comparison": {"ns": 2, "algo": 3},     # NS: landmark + compare; Algo: percentage calc + compare
-        "equation_reasoning": {"ns": 1, "algo": 3},      # NS: recognize property; Algo: compute both sides
-        "option_elimination": {"ns": 2, "algo": 4},      # NS: check feature + select; Algo: full multiply
-    }
-
-    for cat in CATEGORIES:
-        cat_fams = [f for f in families if f["category"] == cat]
-        random.shuffle(cat_fams)
-        sc = step_counts[cat]
-        for fam in cat_fams[:per_cat]:
-            task = fam["strong_shortcut"]
-            pm = task["pure_math"]
-
-            ns_sol = f"NS approach ({sc['ns']} steps): {task['ns_shortcut']} → {pm['answer']}"
-            algo_sol = f"Algorithmic approach ({sc['algo']} steps): Compute step by step → {pm['answer']}"
-
-            # Randomize order
-            if random.random() < 0.5:
-                sol_a, sol_b = ns_sol, algo_sol
-                correct = "A"
-            else:
-                sol_a, sol_b = algo_sol, ns_sol
-                correct = "B"
-
-            items.append({
-                "task_id": f"J3_{fam['family_id']}",
-                "task_type": "J3_pairwise_efficiency",
-                "category": cat,
-                "problem": pm["question"],
-                "solution_a": sol_a,
-                "solution_b": sol_b,
-                "correct_answer": correct,
-                "ns_steps": sc["ns"],
-                "algo_steps": sc["algo"],
-                "prompt": f"Both solutions below are correct. Which one uses fewer reasoning steps? Answer A or B.\n\nProblem: {pm['question']}\n\nSolution A: {sol_a}\n\nSolution B: {sol_b}",
-            })
-
-    random.shuffle(items)
-    return items[:n]
-
-
 # ── Generate-level task generators ───────────────────────────────────────────
 
 def generate_g1_items(n_per_category: int, digits: int) -> List[Dict]:
@@ -1241,7 +1100,7 @@ def generate_g2_items() -> List[Dict]:
 
 def main():
     parser = argparse.ArgumentParser(description="SenseMath v2 Generator")
-    parser.add_argument("--phase", choices=["test", "full", "judge", "generate"],
+    parser.add_argument("--phase", choices=["test", "full", "generate"],
                         default="test")
     parser.add_argument("--digits", type=int, nargs="+", default=[2])
     parser.add_argument("--seed", type=int, default=42)
@@ -1285,28 +1144,6 @@ def main():
                     strengths = [f["strong_shortcut"]["shortcut_strength"] for f in cat_fams]
                     print(f"    {cat}: {len(cat_fams)} families, "
                           f"strong strength mean={sum(strengths)/len(strengths):.3f}")
-
-    elif args.phase == "judge":
-        # Load full families to generate judge tasks from
-        all_families = []
-        for d in args.digits:
-            fpath = root / f"sensemath_v2_d{d}.json"
-            if fpath.exists():
-                with fpath.open() as f:
-                    all_families.extend(json.load(f))
-        if not all_families:
-            print("No families found. Run --phase full first.")
-            return
-
-        j1 = generate_j1_items(all_families, n=300)
-        j2 = generate_j2_items(all_families, n=120)
-        j3 = generate_j3_items(all_families, n=100)
-
-        for name, items in [("j1", j1), ("j2", j2), ("j3", j3)]:
-            path = root / f"judge_{name}.json"
-            with path.open("w") as f:
-                json.dump(items, f, indent=2, ensure_ascii=False)
-            print(f"  Saved {len(items)} {name.upper()} items → {path}")
 
     elif args.phase == "generate":
         g1 = generate_g1_items(n_per_category=34, digits=args.digits[0])

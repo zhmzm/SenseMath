@@ -26,9 +26,7 @@ Each file is a JSON array of records. Each record contains:
 
 **J1** (Strategy Appropriateness): Each record includes `ground_truth` (YES/NO) and `predicted` (YES/NO).
 
-**J2** (Error Detection): Each record includes `correct_answer`, `error_type`, `error_description`, and the model's free-text `raw_response`.
-
-**J3** (Pairwise Efficiency): Each record includes `correct_answer` (A/B) and `predicted` (A/B).
+**J2** (Strategy Identification): Each record includes `ground_truth` (SHORTCUT/COMPUTATION), `predicted` (SHORTCUT/COMPUTATION), and `is_correct`.
 
 ### G2 results (`g2_{model}.json`)
 
